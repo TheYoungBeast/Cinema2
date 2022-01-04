@@ -1,0 +1,119 @@
+export const CinemaData: any = {
+    "movies": [
+        {
+            "title":"Red Notice",
+            "duration":118,
+            "description":"An Interpol agent tracks the world's most wanted art thief.",
+            "image":"https://m.media-amazon.com/images/M/MV5BZmRjODgyMzEtMzIxYS00OWY2LTk4YjUtMGMzZjMzMTZiN2Q0XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+            "trailer":"https://fwcdn.pl/video/f/39/829539/Czerwona_nota___Oficjalny_zwiastun___Netflix.vp9.480p.webm"
+         },
+         {
+            "title":"Spider-Man: No Way Home",
+            "duration":150,
+            "description":"With Spider-Man's identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear, forcing Peter to discover what it truly means to be Spider-Man.",
+            "image":"https://m.media-amazon.com/images/M/MV5BMDUzNWJhZWQtYzU3Zi00M2NjLThjZjEtMTRmMjRmNzBmMWI2XkEyXkFqcGdeQXVyODIyOTEyMzY@._V1_.jpg",
+            "trailer":"https://fwcdn.pl/video/f/61/850261/SPIDER_MAN_NO_WAY_HOME.vp9.480p.webm"
+         },
+         {
+            "title":"Shang-Chi and the Legend of the Ten Rings",
+            "duration":132,
+            "description":"Shang-Chi, the master of weaponry-based Kung Fu, is forced to confront his past after being drawn into the Ten Rings organization.",
+            "image":"https://m.media-amazon.com/images/M/MV5BNTliYjlkNDQtMjFlNS00NjgzLWFmMWEtYmM2Mzc2Zjg3ZjEyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+            "trailer":"https://fwcdn.pl/video/f/147/698547/Shang_Chi_and_the_Legend_of_the_Ten_Rings_trailer_Ooo.vp9.480p.webm"
+         },
+         {
+            "title":"Eternals",
+            "duration":156,
+            "description":"The saga of the Eternals, a race of immortal beings who lived on Earth and shaped its history and civilizations.",
+            "image":"https://m.media-amazon.com/images/M/MV5BMTExZmVjY2ItYTAzYi00MDdlLWFlOWItNTJhMDRjMzQ5ZGY0XkEyXkFqcGdeQXVyODIyOTEyMzY@._V1_.jpg",
+            "trailer":"https://fwcdn.pl/video/f/19/836119/Eternals___zwiastun__2__napisy_.vp9.480p.webm"
+         }
+    ],
+    "rooms": [
+        {
+            "roomNumber":"001",
+            "capacity":100
+        },
+        {
+            "roomNumber":"009",
+            "capacity":210
+        },
+        {
+            "roomNumber":"101",
+            "capacity":75
+        },
+        {
+            "roomNumber":"109",
+            "capacity":80
+        }
+    ],
+    "screenings": [
+        {
+           "movieId":0,
+           "roomId":0,
+           "date":"22.11.2021",
+           "hours":"10:30",
+           "occupation":[
+              1,
+              2,
+              3,
+              4,
+              5,
+              20,
+              22
+           ]
+        },
+        {
+           "movieId":1,
+           "roomId":1,
+           "date":"28.11.2021",
+           "hours":"14:00",
+           "occupation":[
+              21,
+              22,
+              23,
+              24,
+              25,
+              30,
+              2,
+              148,
+              172,
+              180,
+              204,
+              133,
+              107,
+              165
+           ]
+        },
+        {
+           "movieId":2,
+           "roomId":2,
+           "date":"30.11.2021",
+           "hours":"16:40",
+           "occupation":[
+              31,
+              22,
+              30,
+              26,
+              13,
+              40,
+              25
+           ]
+        },
+        {
+           "movieId":3,
+           "roomId":3,
+           "date":"01.12.2021",
+           "hours":"19:00",
+           "occupation":[
+              11,
+              22,
+              30,
+              36,
+              33,
+              10,
+              25
+           ]
+        }
+     ]
+}

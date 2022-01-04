@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AddRoomComponent } from './rooms/add-room/add-room.component';
 import { EditRoomComponent } from './rooms/edit-room/edit-room.component';
@@ -20,6 +21,14 @@ import { CinemaScreeningsComponent } from './screenings/cinema-screenings/cinema
 import { EditScreeningComponent } from './screenings/edit-screening/edit-screening.component';
 import { ScreeningDetailsComponent } from './screenings/screening-details/screening-details.component';
 import { TrendingScreeningsComponent } from './screenings/trending-screenings/trending-screenings.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+const appRoutes: Routes = [
+  { path: '', component: HomePageComponent },
+  { path: 'rooms', component: CinemaRoomsComponent },
+  { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
+]
 
 @NgModule({
   declarations: [
@@ -38,10 +47,13 @@ import { TrendingScreeningsComponent } from './screenings/trending-screenings/tr
     CinemaScreeningsComponent,
     EditScreeningComponent,
     ScreeningDetailsComponent,
-    TrendingScreeningsComponent
+    TrendingScreeningsComponent,
+    HomePageComponent,
+    PageNotFoundComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes, { enableTracing: true })
   ],
   providers: [],
   bootstrap: [AppComponent]
