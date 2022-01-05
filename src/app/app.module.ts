@@ -25,15 +25,15 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomePageComponent },
+  { path: '', component: HomePageComponent, pathMatch: 'full'},
   { path: 'rooms', component: CinemaRoomsComponent },
   { path: 'rooms/add', component: AddMovieComponent },
   { path: 'rooms/:id', component: RoomDetailsComponent },
   { path: 'rooms/:id/edit', component: EditRoomComponent },
 
-  { path: 'movies', component: CinemaMoviesComponent },
-  { path: 'movies/:id', component: MovieDetailsComponent },
-  { path: 'movies/:id/edit', component: EditMovieComponent },
+  { path: 'movies', component: CinemaMoviesComponent, pathMatch: 'full' },
+  { path: 'movies/:id', component: MovieDetailsComponent, pathMatch: 'full' },
+  { path: 'movies/:id/edit', component: EditMovieComponent, pathMatch: 'full' },
 
   { path: 'screenings', component: CinemaScreeningsComponent },
   { path: 'screenings/:id', component: ScreeningDetailsComponent },

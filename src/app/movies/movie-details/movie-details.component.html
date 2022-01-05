@@ -1,1 +1,25 @@
-<p>movie-details works!</p>
+
+<div class="main-container">
+    <div class="movie-header">
+        <h2>{{movie.title}}</h2>
+         <span>{{movie.duration}} minutes</span>
+     </div>
+
+     <div class="movie-container">
+        <img [src]="movie.image" alt="movie img" />
+        <video width="auto" height="auto" [controls]="true" autoplay loop>
+            <source [src]="movie.trailer" type="video/mp4"/>
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="movie-desc">
+        <p>{{movie.description}}</p>
+    </div>
+    <div class="movie-buttons">
+        <span>
+            <a [routerLink]="['./','edit']"><button>Edit</button></a>
+            <a [routerLink]="['./', 'remove']"><button>Remove</button></a>
+        </span>
+    </div>
+</div>
