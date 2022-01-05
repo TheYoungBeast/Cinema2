@@ -1,6 +1,10 @@
-<div>
-    <h1>Movies</h1>
+<div class="main-container">
     <ol>
-        <li *ngFor="let movie of moviesList"> {{ movie | json }}</li>
+        <li *ngFor="let movie of moviesList; let i = index">
+            <a [routerLink]="['/movies/', i]">{{movie.title}}</a>
+            <span> {{movie.duration}}</span>
+        </li>
     </ol>
+
+    <a [routerLink]="['/movies/add']"><button>Add Movie</button></a>
 </div>

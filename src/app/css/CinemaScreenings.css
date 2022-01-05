@@ -12,6 +12,10 @@
     word-wrap: break-word;
     text-align: center;
 }
+.table-screenings img { /* do poprawy */
+    width: 60%;
+    height: auto;
+}
 
 .table-screenings tr:nth-child(odd)
 {

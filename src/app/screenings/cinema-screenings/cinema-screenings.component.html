@@ -1,6 +1,36 @@
-<div>
-    <h1> Screening list </h1>
-    <ol>
-        <li *ngFor="let screening of screeningList"> {{ screening | json }} </li>
-    </ol>
+<div class="main-container" id="screening-list">
+    <table class="table-screenings">
+        <tbody>
+            <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Time</th>
+                <th>Date</th>
+                <th>Room</th>
+                <th>Details</th>
+            </tr>
+            <tr *ngFor="let screening of data.screenings; let i = index">
+                <td>
+                    <img [src]="data.movies[screening.movieId].image"/>
+                </td>
+                <td>
+                    {{data.movies[screening.movieId].title | titlecase}}
+                </td>
+                <td>
+                    {{screening.hours}}
+                </td>
+                <td>
+                    {{screening.date}}
+                </td>
+                <td>
+                    {{data.rooms[screening.roomId].roomNumber}}
+                </td>
+                <td>
+                    <a [routerLink]="['./', i]">see more</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a [routerLink]="['./add']"><button>Add Screening</button></a>
 </div>

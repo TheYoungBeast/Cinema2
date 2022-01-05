@@ -5,7 +5,7 @@ import { CinemaDataService } from 'src/app/services/cinema-data.service';
 @Component({
   selector: 'app-cinema-movies',
   templateUrl: './cinema-movies.component.html',
-  styleUrls: ['./cinema-movies.component.css']
+  styleUrls: ['./cinema-movies.component.css','../../css/ScreeningDetails.css']
 })
 export class CinemaMoviesComponent implements OnInit {
   moviesList: Array< Movie > = [];
