@@ -1,6 +1,17 @@
-<div>
-    <h1>Rooms</h1>
-    <ol>
-        <li *ngFor="let room of roomList"> {{ room | json }}</li>
-    </ol>
+<div class="main-container">
+    <div>
+        <h3>Room list:</h3>
+        <ol>
+            <li *ngFor="let room of roomList; let i=index">
+                <span>
+                    <a [routerLink]="['./', i]">{{ room.roomNumber }}</a>
+                </span>
+                <span>
+                    Room Capacity: {{ room.capacity }}
+                </span>
+            </li>
+        </ol>
+    </div>
+
+    <a [routerLink]="['./add']"><button>Add Room</button></a>
 </div>
