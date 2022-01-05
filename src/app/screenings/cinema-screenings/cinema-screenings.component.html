@@ -1,1 +1,6 @@
-<p>cinema-screenings works!</p>
+<div>
+    <h1> Screening list </h1>
+    <ol>
+        <li *ngFor="let screening of screeningList"> {{ screening | json }} </li>
+    </ol>
+</div>

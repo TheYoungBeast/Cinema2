@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CinemaDataService } from 'src/app/services/cinema-data.service';
 
 @Component({
   selector: 'app-screening-details',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScreeningDetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cinemaDataService: CinemaDataService) { }
 
   ngOnInit(): void {
   }

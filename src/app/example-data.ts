@@ -1,4 +1,4 @@
-export const CinemaData: any = {
+export const ExampleData: any = {
     "movies": [
         {
             "title":"Red Notice",

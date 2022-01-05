@@ -1,1 +1,6 @@
-<p>cinema-movies works!</p>
+<div>
+    <h1>Movies</h1>
+    <ol>
+        <li *ngFor="let movie of moviesList"> {{ movie | json }}</li>
+    </ol>
+</div>

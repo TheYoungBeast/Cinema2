@@ -1,2 +1,12 @@
-
-<router-outlet></router-outlet>
+<div>
+  <div class="menu-bar-container">
+    <ul class="menu-bar">
+      <a [routerLink]="['/']"><li>Home</li></a>
+      <a [routerLink]="['/movies']" ><li>Movies</li></a>
+      <a [routerLink]="['/screenings']" ><li>Screenings</li></a>
+      <a [routerLink]="['/rooms']"><li>Rooms</li></a>
+      <a [routerLink]="['/trending']"><li>Trending Screenings</li></a>
+    </ul>
+  </div>
+  <router-outlet></router-outlet>
+</div>

@@ -27,7 +27,20 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'rooms', component: CinemaRoomsComponent },
-  { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
+  { path: 'rooms/add', component: AddMovieComponent },
+  { path: 'rooms/:id', component: RoomDetailsComponent },
+  { path: 'rooms/:id/edit', component: EditRoomComponent },
+
+  { path: 'movies', component: CinemaMoviesComponent },
+  { path: 'movies/:id', component: MovieDetailsComponent },
+  { path: 'movies/:id/edit', component: EditMovieComponent },
+
+  { path: 'screenings', component: CinemaScreeningsComponent },
+  { path: 'screenings/:id', component: ScreeningDetailsComponent },
+  { path: 'screenings/:id/edit', component: EditScreeningComponent },
+  { path: 'trending', component: TrendingScreeningsComponent },
+
+  { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ]
 
 @NgModule({
