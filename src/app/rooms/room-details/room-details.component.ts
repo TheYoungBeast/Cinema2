@@ -7,7 +7,7 @@ import { CinemaDataService } from 'src/app/services/cinema-data.service';
 @Component({
   selector: 'app-room-details',
   templateUrl: './room-details.component.html',
-  styleUrls: ['./room-details.component.css']
+  styleUrls: ['./room-details.component.css', '../../css/ScreeningDetails.css']
 })
 export class RoomDetailsComponent implements OnInit, OnDestroy {
   private sub: any;

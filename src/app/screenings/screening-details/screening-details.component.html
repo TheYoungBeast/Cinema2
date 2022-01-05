@@ -1,1 +1,30 @@
-<p>{{ screening | json }}</p>
+<div class="main-container">
+    <ul>
+        <li>Title: {{movie.title}}</li>
+        <li>Duration: {{movie.duration}} minutes</li>
+        <li>{{screening.date}} {{screening.hours}}</li>
+        <li>Room No: {{room.roomNumber}}</li>
+        <li>Ticekts left: {{room.capacity-screening.occupation.length}}</li>
+        <a [routerLink]="[ './', 'edit' ]"><button>Edit</button></a>
+    </ul>
+
+    <div class="theatre" (onClick)="null">
+        <div class="cinema-seats left">
+            <div *ngFor="let item of [].constructor(rows); let r=index" [ngClass]="'cinema-row row-'+(r+1)">
+                <div *ngFor="let item of [].constructor(seatsPerRow); let s=index" 
+                    [attr.data-seat-no]="(r+1)+(s*rows)" [ngClass]="screening.occupation.includes((r+1)+(s*rows)) ? 'seat active' : 'seat'">
+                    {{ (r+1)+(s*rows) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-seats right">
+            <div *ngFor="let item of [].constructor(rows); let r=index" [ngClass]="'cinema-row row-'+(r+1)">
+                <div *ngFor="let item of [].constructor(seatsPerRow); let s=index" 
+                    [attr.data-seat-no]="rows*seatsPerRow + (r+1)+(s*rows)" [ngClass]="screening.occupation.includes(rows*seatsPerRow + (r+1)+(s*rows)) ? 'seat active' : 'seat'">
+                    {{ rows*seatsPerRow + (r+1)+(s*rows) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

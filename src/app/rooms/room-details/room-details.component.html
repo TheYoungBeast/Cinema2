@@ -1,1 +1,13 @@
-<p>room-details works!</p>
+<div class="main-container">
+    <div>
+        <ul>
+            <li>Room Number: {{room.roomNumber}}</li>
+            <li>Room Capacity: {{room.capacity}}</li>
+        </ul>
+    </div>
+
+    <div>
+        <a [routerLink]="['./', 'edit']"><button>Edit</button></a>
+        <a [routerLink]="['./', 'remove']"><button>Remove</button></a>
+    </div>
+</div>
