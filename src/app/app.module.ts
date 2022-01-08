@@ -23,6 +23,7 @@ import { ScreeningDetailsComponent } from './screenings/screening-details/screen
 import { TrendingScreeningsComponent } from './screenings/trending-screenings/trending-screenings.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PurchaseDetailsComponent } from './screenings/purchase-details/purchase-details.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full'},
@@ -63,7 +64,8 @@ const appRoutes: Routes = [
     ScreeningDetailsComponent,
     TrendingScreeningsComponent,
     HomePageComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    PurchaseDetailsComponent
   ],
   imports: [
     BrowserModule,

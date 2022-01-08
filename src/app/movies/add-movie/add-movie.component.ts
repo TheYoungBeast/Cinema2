@@ -36,7 +36,7 @@ export class AddMovieComponent implements OnInit {
         this.movie.trailer = event.target.value;
         break;
       default:
-        throw 'Unhandled Case: ' + event.target.id;
+        throw new Error('Unhandled Case: ' + event.target.id);
     }
   }
 

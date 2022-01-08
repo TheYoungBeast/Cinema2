@@ -1,30 +1,46 @@
 <div class="main-container">
-    <ul>
-        <li>Title: {{movie.title}}</li>
-        <li>Duration: {{movie.duration}} minutes</li>
-        <li>{{screening.date}} {{screening.hours}}</li>
-        <li>Room No: {{room.roomNumber}}</li>
-        <li>Ticekts left: {{room.capacity-screening.occupation.length}}</li>
-        <a [routerLink]="[ './', 'edit' ]"><button>Edit</button></a>
-    </ul>
+    <div *ngIf="!purchased; else purchaseInfo">
+        <ul>
+            <li>Title: {{movie.title}}</li>
+            <li>Duration: {{movie.duration}} minutes</li>
+            <li>{{screening.date}} {{screening.hours}}</li>
+            <li>Room No: {{room.roomNumber}}</li>
+            <li>Ticekts left: {{room.capacity-screening.occupation.length}}</li>
+            <a [routerLink]="[ './', 'edit' ]"><button>Edit</button></a>
+        </ul>
 
-    <div class="theatre" (onClick)="null">
-        <div class="cinema-seats left">
-            <div *ngFor="let item of [].constructor(rows); let r=index" [ngClass]="'cinema-row row-'+(r+1)">
-                <div *ngFor="let item of [].constructor(seatsPerRow); let s=index" 
-                    [attr.data-seat-no]="(r+1)+(s*rows)" [ngClass]="screening.occupation.includes((r+1)+(s*rows)) ? 'seat active' : 'seat'">
-                    {{ (r+1)+(s*rows) }}
+        <div class="theatre" (click)="onSeatSelected($event)">
+            <div class="cinema-seats left">
+                <div *ngFor="let item of [].constructor(rows); let r=index" [ngClass]="'cinema-row row-'+(r+1)">
+                    <div *ngFor="let item of [].constructor(seatsPerRow); let s=index" 
+                        [attr.data-seat-no]="getSeatNumber(r, s, 'l')" [ngClass]="setSeatClass(getSeatNumber(r, s, 'l'))">
+                        {{ getSeatNumber(r, s, 'l') }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="cinema-seats right">
+                <div *ngFor="let item of [].constructor(rows); let r=index" [ngClass]="'cinema-row row-'+(r+1)">
+                    <div *ngFor="let item of [].constructor(seatsPerRow); let s=index" 
+                        [attr.data-seat-no]="getSeatNumber(r, s, 'r')" [ngClass]="setSeatClass(getSeatNumber(r, s, 'r'))">
+                        {{ getSeatNumber(r, s, 'r') }}
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="cinema-seats right">
-            <div *ngFor="let item of [].constructor(rows); let r=index" [ngClass]="'cinema-row row-'+(r+1)">
-                <div *ngFor="let item of [].constructor(seatsPerRow); let s=index" 
-                    [attr.data-seat-no]="rows*seatsPerRow + (r+1)+(s*rows)" [ngClass]="screening.occupation.includes(rows*seatsPerRow + (r+1)+(s*rows)) ? 'seat active' : 'seat'">
-                    {{ rows*seatsPerRow + (r+1)+(s*rows) }}
-                </div>
-            </div>
-        </div>
+        <ng-container *ngIf="selectedSeats.length; else chooseSeatsInfo">
+            <button [ngStyle]="{'max-width': '30%', 'margin': 'auto auto', 'display': 'block'}" class="action-button" (click)="onBuyTickets()">Buy Tickets</button>
+        </ng-container>
+
+        <ng-template #chooseSeatsInfo>
+            <p  style="text-align: center;">Choose seats to buy tickets</p>
+        </ng-template>
+        
     </div>
+
+    <ng-template #purchaseInfo>
+        <app-purchase-details [seats]="selectedSeats"> </app-purchase-details>
+    </ng-template>
+
 </div>
