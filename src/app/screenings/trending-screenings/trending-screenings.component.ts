@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-trending-screenings',
   templateUrl: './trending-screenings.component.html',
-  styleUrls: ['./trending-screenings.component.css']
+  styleUrls: ['./trending-screenings.component.css', '../../css/ScreeningDetails.css']
 })
 export class TrendingScreeningsComponent implements OnInit {
 
