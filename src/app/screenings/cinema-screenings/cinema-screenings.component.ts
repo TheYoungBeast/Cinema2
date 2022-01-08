@@ -13,6 +13,8 @@ export class CinemaScreeningsComponent implements OnInit {
   constructor(private cinemaDataService: CinemaDataService) { }
 
   ngOnInit(): void {
-    this.cinemaDataService.getData().subscribe( data => this.data = data );
+    this.cinemaDataService.getScreenings().subscribe( data => this.data.screenings = data );
+    this.cinemaDataService.getMovies().subscribe( data => this.data.movies = data );
+    this.cinemaDataService.getRooms().subscribe( data => this.data.rooms = data );
   }
 }

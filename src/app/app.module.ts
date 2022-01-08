@@ -31,9 +31,10 @@ const appRoutes: Routes = [
   { path: 'rooms/:id', component: RoomDetailsComponent },
   { path: 'rooms/:id/edit', component: EditRoomComponent },
 
-  { path: 'movies', component: CinemaMoviesComponent, pathMatch: 'full' },
-  { path: 'movies/:id', component: MovieDetailsComponent, pathMatch: 'full' },
-  { path: 'movies/:id/edit', component: EditMovieComponent, pathMatch: 'full' },
+  { path: 'movies', component: CinemaMoviesComponent },
+  { path: 'movies/add', component: AddMovieComponent },
+  { path: 'movies/:id', component: MovieDetailsComponent },
+  { path: 'movies/:id/edit', component: EditMovieComponent },
 
   { path: 'screenings', component: CinemaScreeningsComponent },
   { path: 'screenings/:id', component: ScreeningDetailsComponent },
@@ -66,7 +67,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes, { enableTracing: true })
+    RouterModule.forRoot(appRoutes, { /*enableTracing: true*/ })
   ],
   providers: [],
   bootstrap: [AppComponent]

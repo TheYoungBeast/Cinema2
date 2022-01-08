@@ -1,1 +1,38 @@
-<p>edit-movie works!</p>
+<div class="container main-container">
+    <div class="card-add-movie">
+        <div class="card-image">	
+            <h2 class="card-heading">
+                Edit Movie
+                <small>Edit selected movie</small>
+            </h2>
+        </div>
+        <form class="card-form" (submit)="onSubmit($event)">
+            <div class="input">
+                <input type="text" class="input-field" (change)="inputChanged($event)" id="input-movie-title" [value]="movie.title" [required]="true"/>
+                <label class="input-label">Title</label>
+            </div>
+            <div class="input">
+                <input type="text" class="input-field" (change)="inputChanged($event)" id="input-movie-dur" [value]="movie.duration" [required]="true"/>
+                <label class="input-label">Duration</label>
+            </div>
+            <div class="input">
+                <input type="text" class="input-field" (change)="inputChanged($event)" id="input-movie-desc" [value]="movie.description" [required]="true"/>
+                <label class="input-label">Description</label>
+            </div>
+            <div class="input">
+                <input type="text" class="input-field" (change)="inputChanged($event)" id="input-movie-img" [value]="movie.image" [required]="true"/>
+                <label class="input-label"> Image link</label>
+            </div>
+            <div class="input">
+                <input type="text" class="input-field" (change)="inputChanged($event)" id="input-movie-trailer" [value]="movie.trailer" [required]="true"/>
+                <label class="input-label">Trailer link / Video </label>
+            </div>
+            <div class="action">
+                <button class="action-button">Edit</button>
+            </div>
+        </form>
+        <div class="card-info">
+            Don't forget to add image link and trailer link
+        </div>
+    </div>
+</div>

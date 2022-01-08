@@ -1,1 +1,38 @@
-<p>add-movie works!</p>
+<div class="container main-container">
+    <div class="card-add-movie">
+        <div class="card-image">	
+            <h2 class="card-heading">
+                Add Movie
+                <small>Add new interesting movie</small>
+            </h2>
+        </div>
+        <form class="card-form" (submit)="onSubmit($event)">
+            <div class="input">
+                <input type="text" class="input-field" id="input-movie-title" (change)="onChange($event)" required/>
+                <label class="input-label">Title</label>
+            </div>
+            <div class="input">
+                <input type="text" class="input-field" id="input-movie-desc" (change)="onChange($event)" required/>
+                <label class="input-label">Description</label>
+            </div>
+            <div class="input">
+                <input type="text" class="input-field" id="input-movie-dur" (change)="onChange($event)" required/>
+                <label class="input-label">Duration (minutes)</label>
+            </div>
+            <div class="input">
+                <input type="text" class="input-field" id="input-movie-image" (change)="onChange($event)" required/>
+                <label class="input-label">Image link</label>
+            </div>
+            <div class="input">
+                <input type="text" class="input-field" id="input-movie-trailer" (change)="onChange($event)" required/>
+                <label class="input-label">Video link / Trailer</label>
+            </div>
+            <div class="action">
+                <button class="action-button"> Add Movie </button>
+            </div>
+        </form>
+        <div class="card-info">
+            Don't forget to add image link and trailer link
+        </div>
+    </div>
+</div>
