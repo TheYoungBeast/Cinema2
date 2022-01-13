@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Movie } from 'src/app/interface/movie';
-import { CinemaDataService } from 'src/app/services/cinema-data.service';
+import { DataService } from 'src/app/services/DataService/data-service.service';
 
 @Component({
   selector: 'app-add-movie',
@@ -13,7 +13,7 @@ import { CinemaDataService } from 'src/app/services/cinema-data.service';
 
 export class AddMovieComponent implements OnInit {
 
-  constructor(private router: Router, private cinemaDataService: CinemaDataService) { }
+  constructor(private router: Router, private cinemaDataService: DataService) { }
 
   ngOnInit(): void {
   }
