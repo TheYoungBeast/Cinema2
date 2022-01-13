@@ -24,9 +24,12 @@ import { CinemaScreeningsComponent } from './screenings/cinema-screenings/cinema
 import { EditScreeningComponent } from './screenings/edit-screening/edit-screening.component';
 import { ScreeningDetailsComponent } from './screenings/screening-details/screening-details.component';
 import { TrendingScreeningsComponent } from './screenings/trending-screenings/trending-screenings.component';
+
 import { HomePageComponent } from './home-page/home-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PurchaseDetailsComponent } from './screenings/purchase-details/purchase-details.component';
+
+import { NumericInputDirective } from './directives/NumericInput/numeric-input.directive';
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full'},
@@ -68,7 +71,8 @@ const appRoutes: Routes = [
     TrendingScreeningsComponent,
     HomePageComponent,
     PageNotFoundComponent,
-    PurchaseDetailsComponent
+    PurchaseDetailsComponent,
+    NumericInputDirective
   ],
   imports: [
     BrowserModule,
