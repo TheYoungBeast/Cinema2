@@ -27,7 +27,7 @@
             </div>
 
             <div class="input">
-                <input type="number" class="input-field" name="duration" #duration="ngModel" ngModel min="0" max="999" step="5" required/>
+                <input type="number" NumericInput [max]=999  class="input-field" name="duration" #duration="ngModel" ngModel min="15" step="5" required/>
                 <label class="input-label">Duration (minutes)</label>
             </div>
             <div *ngIf="duration.invalid && duration.touched" class="warning">

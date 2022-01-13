@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/interface/movie';
 
@@ -33,33 +34,11 @@ export class EditMovieComponent implements OnInit, OnDestroy {
     })
   }
 
-  inputChanged(event: any): void {
-
-    switch(event.target.id) {
-      case 'input-movie-title':
-        this.movie.title = event.target.value;
-        break;
-      case 'input-movie-dur':
-        this.movie.duration = +event.target.value;
-        break;
-      case 'input-movie-desc':
-        this.movie.description = event.target.value;
-        break;
-      case 'input-movie-img':
-        this.movie.image = event.target.value;
-        break;
-      case 'input-movie-trailer':
-        this.movie.trailer = event.target.value;
-        break;
-      default:
-        throw 'Unhandled Case: ' + event.target.id;
+  verifyForm(form: NgForm): void {
+    if(form.valid) {
+      this.cinemaDataService.editMovie(this.id, form.value as Movie);
+      this.router.navigate(['movies']);
     }
-  }
-
-  onSubmit(event: any) {
-    event.preventDefault();
-    this.cinemaDataService.editMovie(this.id, this.movie);
-    this.router.navigate(['movies']);
   }
 
   ngOnDestroy(): void {

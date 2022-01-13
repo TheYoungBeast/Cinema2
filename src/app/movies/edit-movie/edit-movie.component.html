@@ -6,31 +6,59 @@
                 <small>Edit selected movie</small>
             </h2>
         </div>
-        <form class="card-form" (submit)="onSubmit($event)">
+
+        <form class="card-form" #f="ngForm" (ngSubmit)="verifyForm(f)">
             <div class="input">
-                <input type="text" class="input-field" (change)="inputChanged($event)" id="input-movie-title" [value]="movie.title" [required]="true"/>
+                <input type="text" class="input-field" name="title" #title="ngModel"  minlength="2" [ngModel]="movie.title" required/>
                 <label class="input-label">Title</label>
             </div>
-            <div class="input">
-                <input type="text" class="input-field" (change)="inputChanged($event)" id="input-movie-dur" [value]="movie.duration" [required]="true"/>
-                <label class="input-label">Duration</label>
+            <div *ngIf="title.invalid && title.touched" class="warning">
+                <p *ngIf="title.errors?.['required']">The field is required.</p>
+                <p *ngIf="title.errors?.['minlength']">Too short. At least {{ title.errors?.['minlength'].requiredLength }} chars.</p>
             </div>
+
             <div class="input">
-                <input type="text" class="input-field" (change)="inputChanged($event)" id="input-movie-desc" [value]="movie.description" [required]="true"/>
+                <input type="text" class="input-field" name="description" #description="ngModel"  minlength="10" [ngModel]="movie.description" required/>
                 <label class="input-label">Description</label>
             </div>
-            <div class="input">
-                <input type="text" class="input-field" (change)="inputChanged($event)" id="input-movie-img" [value]="movie.image" [required]="true"/>
-                <label class="input-label"> Image link</label>
+            <div *ngIf="description.invalid && description.touched" class="warning">
+                <p *ngIf="description.errors?.['required']">The field is required.</p>
+                <p *ngIf="description.errors?.['minlength']">Too short. At least {{ description.errors?.['minlength'].requiredLength }} chars.</p>
             </div>
+
             <div class="input">
-                <input type="text" class="input-field" (change)="inputChanged($event)" id="input-movie-trailer" [value]="movie.trailer" [required]="true"/>
-                <label class="input-label">Trailer link / Video </label>
+                <input type="number" NumericInput [max]=999  class="input-field ng-dirty" name="duration" #duration="ngModel"  min="15" step="5" [ngModel]="movie.duration" value="15" required/>
+                <label class="input-label">Duration (minutes)</label>
             </div>
+            <div *ngIf="duration.invalid && duration.touched" class="warning">
+                <p *ngIf="duration.errors?.['required']">The field is required.</p>
+            </div>
+
+            <div class="input">
+                <input type="url" class="input-field" name="image" #image="ngModel"  pattern="https?://.*" minlength="10" size="30" [ngModel]="movie.image" required/>
+                <label class="input-label">Image link</label>
+            </div>
+            <div *ngIf="image.invalid && image.touched" class="warning">
+                <p *ngIf="image.errors?.['required']">The field is required.</p>
+                <p *ngIf="image.errors?.['minlength']">Too short. At least {{ image.errors?.['minlength'].requiredLength }} chars.</p>
+                <p *ngIf="image.errors?.['pattern']">The field has to be an URL.</p>
+            </div>
+
+            <div class="input">
+                <input type="url" class="input-field " name="trailer" #trailer="ngModel"  pattern="https?://.*" minlength="10" size="30" [ngModel]="movie.trailer" required/>
+                <label class="input-label">Video link / Trailer</label>
+            </div>
+            <div *ngIf="trailer.invalid && trailer.touched" class="warning">
+                <p *ngIf="trailer.errors?.['required']">The field is required.</p>
+                <p *ngIf="trailer.errors?.['minlength']">Too short. At least {{ trailer.errors?.['minlength'].requiredLength }} chars.</p>
+                <p *ngIf="trailer.errors?.['pattern']">The field has to be an URL.</p>
+            </div>
+
             <div class="action">
-                <button class="action-button">Edit</button>
+                <button [disabled]="!f.valid" class="action-button"> Edit Movie </button>
             </div>
         </form>
+
         <div class="card-info">
             Don't forget to add image link and trailer link
         </div>
