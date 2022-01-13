@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { Movie } from 'src/app/interface/movie';
 import { CinemaDataService } from 'src/app/services/cinema-data.service';
 
@@ -10,40 +12,16 @@ import { CinemaDataService } from 'src/app/services/cinema-data.service';
 })
 
 export class AddMovieComponent implements OnInit {
-  private movie: Movie = {} as Movie;
 
   constructor(private router: Router, private cinemaDataService: CinemaDataService) { }
 
   ngOnInit(): void {
   }
 
-  onChange(event: any): void
-  {
-    switch(event.target.id){
-      case 'input-movie-title':
-        this.movie.title = event.target.value;
-        break;
-      case 'input-movie-dur':
-        this.movie.duration = +event.target.value;
-        break;
-      case 'input-movie-desc':
-        this.movie.description = event.target.value;
-        break;
-      case 'input-movie-image':
-        this.movie.image = event.target.value;
-        break;
-      case 'input-movie-trailer':
-        this.movie.trailer = event.target.value;
-        break;
-      default:
-        throw new Error('Unhandled Case: ' + event.target.id);
+  verifyForm(form: NgForm): void {
+    if(form.valid) {
+      this.cinemaDataService.addMovie(form.value as Movie);
+      this.router.navigate(['movies']);
     }
   }
-
-  onSubmit(event: any): void {
-    event.preventDefault();
-    this.cinemaDataService.addMovie(this.movie);
-    this.router.navigate(['movies']);
-  }
-
 }

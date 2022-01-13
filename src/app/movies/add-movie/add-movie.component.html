@@ -6,31 +6,59 @@
                 <small>Add new interesting movie</small>
             </h2>
         </div>
-        <form class="card-form" (submit)="onSubmit($event)">
+
+        <form class="card-form" #f="ngForm" (ngSubmit)="verifyForm(f)">
             <div class="input">
-                <input type="text" class="input-field" id="input-movie-title" (change)="onChange($event)" required/>
+                <input type="text" class="input-field" name="title" #title="ngModel" ngModel minlength="2" required/>
                 <label class="input-label">Title</label>
             </div>
+            <div *ngIf="title.invalid && title.touched" class="warning">
+                <p *ngIf="title.errors?.['required']">The field is required.</p>
+                <p *ngIf="title.errors?.['minlength']">Too short. At least {{ title.errors?.['minlength'].requiredLength }} chars.</p>
+            </div>
+
             <div class="input">
-                <input type="text" class="input-field" id="input-movie-desc" (change)="onChange($event)" required/>
+                <input type="text" class="input-field" name="description" #description="ngModel" ngModel minlength="10" required/>
                 <label class="input-label">Description</label>
             </div>
+            <div *ngIf="description.invalid && description.touched" class="warning">
+                <p *ngIf="description.errors?.['required']">The field is required.</p>
+                <p *ngIf="description.errors?.['minlength']">Too short. At least {{ description.errors?.['minlength'].requiredLength }} chars.</p>
+            </div>
+
             <div class="input">
-                <input type="text" class="input-field" id="input-movie-dur" (change)="onChange($event)" required/>
+                <input type="number" class="input-field" name="duration" #duration="ngModel" ngModel min="0" max="999" step="5" required/>
                 <label class="input-label">Duration (minutes)</label>
             </div>
+            <div *ngIf="duration.invalid && duration.touched" class="warning">
+                <p *ngIf="duration.errors?.['required']">The field is required.</p>
+            </div>
+
             <div class="input">
-                <input type="text" class="input-field" id="input-movie-image" (change)="onChange($event)" required/>
+                <input type="url" class="input-field" name="image" #image="ngModel" ngModel pattern="https?://.*" minlength="10" size="30" required/>
                 <label class="input-label">Image link</label>
             </div>
+            <div *ngIf="image.invalid && image.touched" class="warning">
+                <p *ngIf="image.errors?.['required']">The field is required.</p>
+                <p *ngIf="image.errors?.['minlength']">Too short. At least {{ image.errors?.['minlength'].requiredLength }} chars.</p>
+                <p *ngIf="image.errors?.['pattern']">The field has to be an URL.</p>
+            </div>
+
             <div class="input">
-                <input type="text" class="input-field" id="input-movie-trailer" (change)="onChange($event)" required/>
+                <input type="url" class="input-field " name="trailer" #trailer="ngModel" ngModel pattern="https?://.*" minlength="10" size="30" required/>
                 <label class="input-label">Video link / Trailer</label>
             </div>
+            <div *ngIf="trailer.invalid && trailer.touched" class="warning">
+                <p *ngIf="trailer.errors?.['required']">The field is required.</p>
+                <p *ngIf="trailer.errors?.['minlength']">Too short. At least {{ trailer.errors?.['minlength'].requiredLength }} chars.</p>
+                <p *ngIf="trailer.errors?.['pattern']">The field has to be an URL.</p>
+            </div>
+
             <div class="action">
-                <button class="action-button"> Add Movie </button>
+                <button [disabled]="!f.valid" class="action-button"> Add Movie </button>
             </div>
         </form>
+
         <div class="card-info">
             Don't forget to add image link and trailer link
         </div>
