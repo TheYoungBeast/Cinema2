@@ -10,7 +10,7 @@ import { Screening } from 'src/app/interface/screening';
   providedIn: 'root'
 })
 
-export class HttpServiceService {
+export class HttpService {
   private baseUrl: string = 'http://localhost:7777/';
   private baseHttpOptions: Object = { headers: new HttpHeaders({'Content-Type':  'application/json' }) };
 
