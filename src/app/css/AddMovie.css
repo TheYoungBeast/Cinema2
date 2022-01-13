@@ -4,6 +4,15 @@
 	box-sizing: border-box;
 }
 
+.warning {
+	margin-bottom: 15px;
+}
+
+.warning p {
+	color: red;
+	font-size: medium;
+}
+
 input {
 	appearance: none;
 	border-radius: 0;
@@ -149,7 +158,9 @@ input {
 	border-bottom-color: #6658d3;
 }
 
-.input-field:focus + .input-label, .input-field:valid + .input-label {
+.input-field:focus + .input-label,
+.input-field:valid + .input-label,
+.ng-dirty + .input-label {
 	color: #6658d3;
 	transform: translateY(-1.5rem);
 }
