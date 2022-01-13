@@ -1,7 +1,10 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 
-import { Movie, Room, Screening } from 'src/app/DataInterface';
+import { Movie } from 'src/app/interface/movie';
+import { Room } from 'src/app/interface/room';
+import { Screening } from 'src/app/interface/screening';
+
 import { CinemaDataService } from 'src/app/services/cinema-data.service';
 
 @Component({

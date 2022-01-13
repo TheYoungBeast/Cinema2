@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
-import { Room } from 'src/app/DataInterface';
+import { Room } from 'src/app/interface/room';
 
 import { CinemaDataService } from 'src/app/services/cinema-data.service';
 

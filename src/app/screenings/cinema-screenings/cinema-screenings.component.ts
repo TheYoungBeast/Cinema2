@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CinemaDataService } from 'src/app/services/cinema-data.service';
-import { CinemaData } from 'src/app/DataInterface';
+import { CinemaData } from 'src/app/interface/cinema-data';
 
 @Component({
   selector: 'app-cinema-screenings',

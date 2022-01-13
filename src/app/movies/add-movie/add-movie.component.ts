@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Movie } from 'src/app/DataInterface';
+import { Movie } from 'src/app/interface/movie';
 import { CinemaDataService } from 'src/app/services/cinema-data.service';
 
 @Component({
@@ -29,7 +29,7 @@ export class AddMovieComponent implements OnInit {
       case 'input-movie-desc':
         this.movie.description = event.target.value;
         break;
-      case 'input-movie-img':
+      case 'input-movie-image':
         this.movie.image = event.target.value;
         break;
       case 'input-movie-trailer':

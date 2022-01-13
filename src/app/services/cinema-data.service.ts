@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 
-import { Movie, Room, Screening } from '../DataInterface';
 import { ExampleData } from '../example-data';
+
+import { Movie } from '../interface/movie';
+import { Room } from '../interface/room';
+import { Screening } from '../interface/screening';
 
 export class InvalidIndexException extends Error {
   constructor(message: string) {
@@ -30,6 +33,8 @@ export class CinemaDataService
     this._dataMovies.next( ExampleData["movies"] );
     this._dataRooms.next( ExampleData["rooms"] );
     this._dataScreenings.next( ExampleData["screenings"] );
+
+    console.log("Service INIT");
   }
 
   getMovies(): Observable< Array<Movie> > {
