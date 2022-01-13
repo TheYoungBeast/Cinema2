@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/interface/movie';
 
-import { CinemaDataService } from 'src/app/services/cinema-data.service';
+import { DataService } from 'src/app/services/DataService/data-service.service';
 
 @Component({
   selector: 'app-edit-movie',
@@ -18,20 +18,14 @@ export class EditMovieComponent implements OnInit, OnDestroy {
   private sub: any;
 
 
-  constructor(private cinemaDataService: CinemaDataService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private cinemaDataService: DataService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.sub = this.route.params.subscribe( params => {
       this.id = +params['id'];
     })
 
-    this.cinemaDataService.getMovie(this.id).subscribe( movie => {
-      this.movie.image = movie.image;
-      this.movie.trailer = movie.trailer;
-      this.movie.description = movie.description;
-      this.movie.title = movie.title;
-      this.movie.duration = movie.duration;
-    })
+    this.cinemaDataService.getData().subscribe( data => this.movie = data.movies[this.id] );
   }
 
   verifyForm(form: NgForm): void {

@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Movie } from 'src/app/interface/movie';
-import { CinemaDataService } from 'src/app/services/cinema-data.service';
+
+import { DataService } from 'src/app/services/DataService/data-service.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -13,16 +14,14 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   id: number = 0;
   private sub: any;
 
-  constructor(private route: ActivatedRoute, private cinemaDataService: CinemaDataService) { }
+  constructor(private route: ActivatedRoute, private cinemaDataService: DataService) { }
 
   ngOnInit(): void {
     this.sub = this.route.params.subscribe( params => {
       this.id = +params['id'];
     });
 
-    this.cinemaDataService.getMovie(this.id).subscribe( movie => {
-      this.movie = movie;
-    })
+    this.cinemaDataService.getData().subscribe( data => this.movie = data.movies[this.id] );
   }
 
   ngOnDestroy(): void {
