@@ -1,7 +1,6 @@
 export interface Screening {
     movieId: number,
     roomId: number,
-    date: string,
-    hours: string,
+    date: Date,
     occupation: Array<number>
 }

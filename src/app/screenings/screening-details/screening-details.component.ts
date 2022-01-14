@@ -5,7 +5,7 @@ import { Movie } from 'src/app/interface/movie';
 import { Room } from 'src/app/interface/room';
 import { Screening } from 'src/app/interface/screening';
 
-import { CinemaDataService } from 'src/app/services/cinema-data.service';
+import { DataService } from 'src/app/services/DataService/data-service.service';
 
 @Component({
   selector: 'app-screening-details',
@@ -31,43 +31,37 @@ export class ScreeningDetailsComponent implements OnInit, OnDestroy {
   private id: number = 0;
   private sub: any;
 
-  constructor(private cinemaDataService: CinemaDataService, private route: ActivatedRoute) { }
+  constructor(private cinemaDataService: DataService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.sub = this.route.params.subscribe( params => {
       this.id = +params['id'];
     })
 
-    this.cinemaDataService.getScreening(this.id).subscribe( scrn => {
-      this.screening = scrn;
+    this.cinemaDataService.getData().subscribe( data => {
+      if(!data.screenings) return;
+      this.screening = data.screenings[this.id] || null;
+      this.movie = data.movies[this.screening.movieId];
+      this.room = data.rooms[this.screening.roomId];
+
+      const maxRowNo = 7;
+      let bestRowNo = 0;
+      let bestRestModulo = this.room.capacity % maxRowNo;
+
+      for(let i = 4; i <= maxRowNo; i++ )
+      {
+          let modulo = this.room.capacity % i;
+          if(modulo <= bestRestModulo)
+          {
+              bestRestModulo = modulo;
+              bestRowNo = i;
+          }
+      }
+
+      const seatsPerSide = this.room.capacity/2;
+      this.seatsPerRow = Math.ceil(seatsPerSide/bestRowNo);
+      this.rows = bestRowNo;
     })
-
-    this.cinemaDataService.getRoom(this.screening.roomId).subscribe( rm => {
-      this.room = rm;
-    })
-
-    this.cinemaDataService.getMovie(this.screening.movieId).subscribe( mv => {
-      this.movie = mv;
-    })
-
-
-    const maxRowNo = 7;
-    let bestRowNo = 0;
-    let bestRestModulo = this.room.capacity % maxRowNo;
-
-    for(let i = 4; i <= maxRowNo; i++ )
-    {
-        let modulo = this.room.capacity % i;
-        if(modulo <= bestRestModulo)
-        {
-            bestRestModulo = modulo;
-            bestRowNo = i;
-        }
-    }
-
-    const seatsPerSide = this.room.capacity/2;
-    this.seatsPerRow = Math.ceil(seatsPerSide/bestRowNo);
-    this.rows = bestRowNo;
   }
 
   onSeatSelected(event: any) {

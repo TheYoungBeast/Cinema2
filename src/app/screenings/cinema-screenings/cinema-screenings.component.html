@@ -17,10 +17,10 @@
                     {{data.movies[screening.movieId].title | titlecase}}
                 </td>
                 <td>
-                    {{screening.hours}}
+                    {{screening.date | date:'HH:mm'}}
                 </td>
                 <td>
-                    {{screening.date}}
+                    {{screening.date | date:'dd.MM.YYYY'}}
                 </td>
                 <td>
                     {{data.rooms[screening.roomId].roomNumber}}

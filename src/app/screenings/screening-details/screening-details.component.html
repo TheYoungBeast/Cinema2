@@ -3,9 +3,9 @@
         <ul>
             <li>Title: {{movie.title}}</li>
             <li>Duration: {{movie.duration}} minutes</li>
-            <li>{{screening.date}} {{screening.hours}}</li>
+            <li>{{screening.date | date:'dd:MM:YYYY'}} {{screening.date | date:'HH:mm'}}</li>
             <li>Room No: {{room.roomNumber}}</li>
-            <li>Ticekts left: {{room.capacity-screening.occupation.length}}</li>
+            <li>Ticekts left: {{ screening.occupation? (room.capacity-screening.occupation.length) : 'loading...'}}</li>
             <a [routerLink]="[ './', 'edit' ]"><button>Edit</button></a>
         </ul>
 
