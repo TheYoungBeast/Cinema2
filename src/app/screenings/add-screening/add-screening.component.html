@@ -1,1 +1,44 @@
-<p>add-screening works!</p>
+<div class="container main-container">
+    <div class="card-add-movie">
+        <div class="card-image">	
+            <h2 class="card-heading">
+                Add Screening
+                <small>Set up new screening!</small>
+            </h2>
+        </div>
+
+        <form class="card-form" #f="ngForm" (ngSubmit)="verifyForm(f)">
+            <div class="input">
+                <select class="input-field" name="movieId" id="select-movie" #movieId="ngModel" ngModel required>
+                    <ng-container *ngFor="let item of cinemaData.movies; let i=index">
+                        <option [value]="i">{{ item.title }}</option>
+                    </ng-container>
+                </select>
+                <label class="input-label">Select Movie</label>
+            </div>
+            <div class="input">
+                <input class="input-field" type="date" id="select-date" min="{{today | date:'yyyy-MM-dd'}}" name="date" #date="ngModel" [ngModel]="today | date:'yyyy-MM-dd'" pattern="\d{4}-\d{2}-\d{2}" required/>
+                <label class="input-label">Set Date</label>
+            </div>
+            <div class="input">
+                <input class="input-field" type="time" id="select-time" min="{{today | date:'HH:mm'}}" max="23:00" name="hours" #hours="ngModel" [ngModel]="today | date:'HH:mm'" required/>
+                <label class="input-label">Set Hour</label>
+            </div>
+            <div class="input">
+                <select class="input-field" name="roomId" id='select-room' #roomId="ngModel" ngModel required>
+                    <ng-container *ngFor="let item of cinemaData.rooms; let i=index">
+                        <option [value]="i">{{ item.roomNumber }}</option>
+                    </ng-container>
+                </select>
+                <label class="input-label">Select Room</label>
+            </div>
+            <div class="action">
+                <button [disabled]="!f.valid" class="action-button">Add Screening</button>
+            </div>
+        </form>
+
+        <div class="card-info">
+            An empty room list means all rooms are occupied at a selected date/time
+        </div>
+    </div>
+</div>
