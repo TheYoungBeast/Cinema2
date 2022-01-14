@@ -41,6 +41,14 @@ input {
 	margin-bottom: 25px;
 }
 
+button:disabled:hover {
+	cursor: not-allowed;
+}
+
+button:enabled:hover {
+	cursor: pointer;
+}
+
 .movie-header h2
 {
 	color: #624eff;
