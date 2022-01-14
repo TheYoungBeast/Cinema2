@@ -21,7 +21,9 @@ export class RoomDetailsComponent implements OnInit, OnDestroy {
       this.id = +params['id'];
     })
 
-    this.cinemaDataService.getData().subscribe( data => this.room = data.rooms[this.id] );
+    this.cinemaDataService.getData().subscribe( data => {
+      if(data.rooms) this.room = data.rooms[this.id]
+    });
   }
 
   ngOnDestroy(): void {

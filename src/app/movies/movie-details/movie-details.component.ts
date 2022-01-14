@@ -21,7 +21,9 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       this.id = +params['id'];
     });
 
-    this.cinemaDataService.getData().subscribe( data => this.movie = data.movies[this.id] );
+    this.cinemaDataService.getData().subscribe( data => {
+      if(data.movies) this.movie = data.movies[this.id]
+    });
   }
 
   ngOnDestroy(): void {
