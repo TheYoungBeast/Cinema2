@@ -44,6 +44,7 @@ const appRoutes: Routes = [
   { path: 'movies/:id/edit', component: EditMovieComponent },
 
   { path: 'screenings', component: CinemaScreeningsComponent },
+  { path: 'screenings/add', component: AddScreeningComponent },
   { path: 'screenings/:id', component: ScreeningDetailsComponent },
   { path: 'screenings/:id/edit', component: EditScreeningComponent },
   { path: 'trending', component: TrendingScreeningsComponent },
