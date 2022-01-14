@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CinemaData } from 'src/app/interface/cinema-data';
@@ -17,8 +17,7 @@ export class AddScreeningComponent implements OnInit, AfterViewInit, OnDestroy {
   availableRooms: number[] = [];
   today: Date = new Date();
 
-  private selectedDate: string = "";
-  private selectedHours: string = "";
+  private selectedDate: Date = new Date();
 
   private movieId: number = -1;
 
@@ -30,7 +29,6 @@ export class AddScreeningComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     this.cinemaDataService.getData().subscribe( data => this.cinemaData = data );
-    console.log(this.today.toISOString());
   }
 
   ngAfterViewInit(): void {
@@ -39,17 +37,21 @@ export class AddScreeningComponent implements OnInit, AfterViewInit, OnDestroy {
     // the issue is here we subscribe everytime form changes which causes multiple subscription triggers
     // easy fix subscribe => check if already subscribing 
     
+
+    // Do poprawy
     this.form.valueChanges?.subscribe( d => {
       let c1 = this.form.controls['date'];
       let c2 = this.form.controls['hours'];
       let c3 = this.form.controls['movieId'];
       if(c1 && c2 && c3) {
         if(!this.subDate) this.subDate = c1.valueChanges.subscribe(k => {
-          this.selectedDate = k.split('-').reverse().join('.');
+          this.selectedDate = new Date(k);
           this.getAvailableRooms();
         });
         if(!this.subHours) this.subHours = c2.valueChanges.subscribe(k => {
-          this.selectedHours = k;
+          this.selectedDate.setHours(parseInt(k.split(':')[0]));
+          this.selectedDate.setMinutes(parseInt(k.split(':')[1]));
+          this.selectedDate.setSeconds(0);
           this.getAvailableRooms();
         });
         if(!this.subMovie) this.subMovie = c3.valueChanges.subscribe(k => {
@@ -61,35 +63,42 @@ export class AddScreeningComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getAvailableRooms(): void {
-    if(!this.selectedDate.length || !this.selectedHours.length || this.movieId < 0)
+    if(isNaN(this.selectedDate.getTime()) || this.movieId < 0)
       return;
 
     let unavailableRooms = Array.from(new Set(this.cinemaData.screenings.filter( screening => {
-      let date = screening.date;
-
-      if(date.valueOf() === stringToDate(this.selectedDate).valueOf())
+      if(this.selectedDate.toDateString() == screening.date.toDateString())
       {
-          let newScreeningStart = timeStringToMinutes(this.selectedHours);
-          let newScreeningEnd = newScreeningStart + this.cinemaData.movies[this.movieId].duration;
-          let oldScreeningStart = timeStringToMinutes( screening.date.toTimeString() );
-          let oldScreeningEnd = oldScreeningStart + this.cinemaData.movies[screening.movieId].duration;
+          let timestamp = parseInt((screening.date.getTime() / 1000).toFixed(0)) + this.cinemaData.movies[screening.movieId].duration*60;
+          let newTimestamp = parseInt((this.selectedDate.getTime() / 1000).toFixed(0)) + this.cinemaData.movies[this.movieId].duration*60;
+
+          let ScreeningEnd = new Date(timestamp * 1000).getTime();
+          let ScreeningStart = screening.date.getTime();
+
+          let newScreeningEnd = new Date(newTimestamp * 1000).getTime();
+          let newScreeningStart = this.selectedDate.getTime();
           
-          let isOverlapping = (newScreeningStart >= oldScreeningStart && newScreeningStart <= oldScreeningEnd) || (newScreeningEnd >= oldScreeningStart && newScreeningEnd <= oldScreeningEnd);
+          let isOverlapping = (newScreeningStart >= ScreeningStart && newScreeningStart <= ScreeningEnd) || (newScreeningEnd >= ScreeningStart && newScreeningEnd <= ScreeningEnd);
           
-          return isNaN(newScreeningStart) ? false : isOverlapping;
+          return isOverlapping;
       }
       else return false;
-    }).map( screening => screening.roomId )));
+    }).map( screening => screening.roomId ))).map( (x:any) => parseInt(x) ); // it returns array of strings for some reason??
 
     let rooms = this.cinemaData.rooms.map( (r, i) => i );
     let availableRooms = rooms.filter( (roomId) => !unavailableRooms.includes(roomId) ); 
 
     this.availableRooms = availableRooms;
+    console.log(availableRooms, unavailableRooms);
   }
 
   verifyForm(form: NgForm): void {
     if(form.valid) {
       let screening: Screening = form.value;
+      screening.date = new Date(form.value.date);
+      screening.date.setHours(parseInt(form.value.hours.split(':')[0]))
+      screening.date.setMinutes(parseInt(form.value.hours.split(':')[1]));
+      screening.date.setSeconds(0);
       screening.occupation = [];
       this.cinemaDataService.addScreening(screening);
       this.route.navigate(['screenings']);
@@ -100,13 +109,6 @@ export class AddScreeningComponent implements OnInit, AfterViewInit, OnDestroy {
       this.subDate.unsubscribe();
       this.subHours.unsubscribe();
   }
-}
-
-const stringToDate = (string: string) => {
-  let date = new Date();
-  date.setFullYear(parseInt(string.slice(-4)), parseInt(string.slice(3, 5))-1, parseInt(string.slice(0, 2)));
-  date.setHours(0, 0, 0, 0);
-  return date;
 }
 
 const timeStringToMinutes = (time: string) => {
