@@ -34,7 +34,7 @@ import { NumericInputDirective } from './directives/NumericInput/numeric-input.d
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full'},
   { path: 'rooms', component: CinemaRoomsComponent },
-  { path: 'rooms/add', component: AddMovieComponent },
+  { path: 'rooms/add', component: AddRoomComponent },
   { path: 'rooms/:id', component: RoomDetailsComponent },
   { path: 'rooms/:id/edit', component: EditRoomComponent },
 

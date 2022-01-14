@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Room } from 'src/app/interface/room';
-import { CinemaDataService } from 'src/app/services/cinema-data.service';
+import { DataService } from 'src/app/services/DataService/data-service.service';
 
 @Component({
   selector: 'app-cinema-rooms',
@@ -10,12 +10,10 @@ import { CinemaDataService } from 'src/app/services/cinema-data.service';
 export class CinemaRoomsComponent implements OnInit {
   roomList: Array< Room > = [];
 
-  constructor(private cinemaDataService: CinemaDataService) {}
+  constructor(private cinemaDataService: DataService) {}
 
   ngOnInit(): void {
-    this.cinemaDataService.getRooms().subscribe( (rooms) => {
-      this.roomList = rooms;
-    })
+    this.cinemaDataService.getData().subscribe( data => this.roomList = data.rooms );
   }
 
 }

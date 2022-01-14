@@ -1,1 +1,37 @@
-<p>add-room works!</p>
+<div class="container main-container">
+    <div class="card-add-movie">
+        <div class="card-image">	
+            <h2 class="card-heading">
+                Add Room
+                <small>Add place to enjoy fav movies</small>
+            </h2>
+        </div>
+        <form class="card-form" #f="ngForm" (ngSubmit)="verifyForm(f)">
+            <div class="input">
+                <input NumericInput class="input-field" name="roomNumber" type="text" minlength="3" maxlength="3" #number="ngModel" ngModel required/>
+                <label class="input-label">Room Number</label>
+            </div>
+            <div class="warning" *ngIf="number.invalid && number.touched">
+                <p *ngIf="number.errors?.['required']">The field is required.</p>
+                <p *ngIf="number.errors?.['minlength']">The room number has to be 3 digits long.</p>
+            </div>
+
+
+            <div class="input">
+                <input NumericInput [max]="999" class="input-field" name="capacity" #capacity="ngModel" ngModel type="number" min="50"  required/>
+                <label class="input-label">Room Capacity</label>
+            </div>
+            <div class="warning" *ngIf="capacity.invalid && capacity.touched">
+                <p *ngIf="capacity.errors?.['required']">The field is required.</p>
+            </div>
+
+
+            <div class="action">
+                <button [disabled]="!f.valid" class="action-button"> Add Room </button>
+            </div>
+        </form>
+        <div class="card-info">
+            Room number always contains 3 digits
+        </div>
+    </div>
+</div>
