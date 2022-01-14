@@ -1,0 +1,31 @@
+[
+   {
+      "title":"Red Notice",
+      "duration":118,
+      "description":"An Interpol agent tracks the world's most wanted art thief.",
+      "image":"https://m.media-amazon.com/images/M/MV5BZmRjODgyMzEtMzIxYS00OWY2LTk4YjUtMGMzZjMzMTZiN2Q0XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+      "trailer":"https://fwcdn.pl/video/f/39/829539/Czerwona_nota___Oficjalny_zwiastun___Netflix.vp9.480p.webm"
+   },
+   {
+      "title":"Spider-Man: No Way Home",
+      "duration":150,
+      "description":"With Spider-Man's identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear, forcing Peter to discover what it truly means to be Spider-Man.",
+      "image":"https://m.media-amazon.com/images/M/MV5BMDUzNWJhZWQtYzU3Zi00M2NjLThjZjEtMTRmMjRmNzBmMWI2XkEyXkFqcGdeQXVyODIyOTEyMzY@._V1_.jpg",
+      "trailer":"https://fwcdn.pl/video/f/61/850261/SPIDER_MAN_NO_WAY_HOME.vp9.480p.webm"
+   },
+   {
+      "title":"Shang-Chi and the Legend of the Ten Rings",
+      "duration":132,
+      "description":"Shang-Chi, the master of weaponry-based Kung Fu, is forced to confront his past after being drawn into the Ten Rings organization.",
+      "image":"https://m.media-amazon.com/images/M/MV5BNTliYjlkNDQtMjFlNS00NjgzLWFmMWEtYmM2Mzc2Zjg3ZjEyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+      "trailer":"https://fwcdn.pl/video/f/147/698547/Shang_Chi_and_the_Legend_of_the_Ten_Rings_trailer_Ooo.vp9.480p.webm"
+   },
+   {
+      "title":"Eternals",
+      "duration":156,
+      "description":"The saga of the Eternals, a race of immortal beings who lived on Earth and shaped its history and civilizations.",
+      "image":"https://m.media-amazon.com/images/M/MV5BMTExZmVjY2ItYTAzYi00MDdlLWFlOWItNTJhMDRjMzQ5ZGY0XkEyXkFqcGdeQXVyODIyOTEyMzY@._V1_.jpg",
+      "trailer":"https://fwcdn.pl/video/f/19/836119/Eternals___zwiastun__2__napisy_.vp9.480p.webm"
+   }
+   
+]

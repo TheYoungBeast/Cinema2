@@ -1,0 +1,18 @@
+[
+    {
+        "roomNumber":"001",
+        "capacity":100
+    },
+    {
+        "roomNumber":"009",
+        "capacity":210
+    },
+    {
+        "roomNumber":"101",
+        "capacity":75
+    },
+    {
+        "roomNumber":"109",
+        "capacity":80
+    }
+]
