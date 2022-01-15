@@ -15,6 +15,7 @@ export class DataService {
 
   constructor(private httpSerivce: HttpService) { 
     httpSerivce.fetchAllData().subscribe( data => {
+      if(!data.screenings) return;
       data.screenings.forEach( v => v.date = new Date(v.date) );
       this.serviceData.next(data);
     }, error => console.log(error) );
