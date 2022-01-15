@@ -1,10 +1,18 @@
 <div class="main-container">
-    <ol>
-        <li *ngFor="let movie of moviesList; let i = index">
-            <a [routerLink]="['/movies/', i]">{{movie.title}}</a>
-            <span> {{movie.duration}}</span>
-        </li>
-    </ol>
+
+    <div class="input">
+        <input type="text" type="input-field" required/>
+        <label class="input-label">Filter Movies</label>
+    </div>
+
+    <div>
+        <ol>
+            <li *ngFor="let movie of moviesList; let i = index">
+                <a [routerLink]="['/movies/', i]">{{movie.title}}</a>
+                <span> {{movie.duration}}</span>
+            </li>
+        </ol>
+    </div>
 
     <a style="text-decoration: none;" [routerLink]="['./add']">
         <button class="action-button" style="max-width: 25%; margin: auto; display: block">Add Movie</button>
