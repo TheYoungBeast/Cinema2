@@ -1,13 +1,13 @@
 <div class="main-container">
 
     <div class="input">
-        <input type="text" type="input-field" required/>
+        <input type="text" class="input-field" [formControl]="filterControl" required/>
         <label class="input-label">Filter Movies</label>
     </div>
 
     <div>
         <ol>
-            <li *ngFor="let movie of moviesList; let i = index">
+            <li *ngFor="let movie of moviesList | filterMovies: filter; let i = index">
                 <a [routerLink]="['/movies/', i]">{{movie.title}}</a>
                 <span> {{movie.duration}}</span>
             </li>
