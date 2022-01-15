@@ -38,7 +38,7 @@
 
             <div class="input">
                 <select class="input-field" name="roomId" id='select-room' #roomId="ngModel" ngModel required>
-                    <ng-container *ngFor="let item of availableRooms">
+                    <ng-container *ngFor="let item of availableRooms.getList(cinemaData, selectedDate, selectedMovieId)">
                         <option [value]="item">{{ cinemaData.rooms[item].roomNumber }}</option>
                     </ng-container>
                 </select>

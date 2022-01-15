@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CinemaData } from 'src/app/interface/cinema-data';
 import { Screening } from 'src/app/interface/screening';
+import { AvailableRoomsService } from 'src/app/services/AvailableRooms/available-rooms.service';
 import { DataService } from 'src/app/services/DataService/data-service.service';
 
 @Component({
@@ -14,18 +15,30 @@ export class AddScreeningComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('f', {static: true}) form: NgForm = {} as NgForm;
 
   cinemaData: CinemaData = {} as CinemaData;
-  availableRooms: number[] = [];
   today: Date = new Date();
 
-  private selectedDate: Date = new Date();
-
+  private _selectedDate: Date = new Date();
   private movieId: number = -1;
 
   private subDate: any = null;
   private subHours: any = null;
   private subMovie: any = null;
 
-  constructor(private cinemaDataService: DataService, private route: Router) { }
+  constructor(private cinemaDataService: DataService, 
+    private route: Router,
+    private _availableRoomsService: AvailableRoomsService) { };
+
+  get availableRooms(): AvailableRoomsService {
+    return this._availableRoomsService;
+  }
+
+  get selectedDate() : Date {
+    return this._selectedDate;
+  }
+
+  get selectedMovieId() : number {
+    return this.movieId;
+  }
 
   ngOnInit(): void {
     this.cinemaDataService.getData().subscribe( data => this.cinemaData = data );
@@ -45,51 +58,18 @@ export class AddScreeningComponent implements OnInit, AfterViewInit, OnDestroy {
       let c3 = this.form.controls['movieId'];
       if(c1 && c2 && c3) {
         if(!this.subDate) this.subDate = c1.valueChanges.subscribe(k => {
-          this.selectedDate = new Date(k);
-          this.getAvailableRooms();
+          this._selectedDate = new Date(k);
         });
         if(!this.subHours) this.subHours = c2.valueChanges.subscribe(k => {
           this.selectedDate.setHours(parseInt(k.split(':')[0]));
           this.selectedDate.setMinutes(parseInt(k.split(':')[1]));
           this.selectedDate.setSeconds(0);
-          this.getAvailableRooms();
         });
         if(!this.subMovie) this.subMovie = c3.valueChanges.subscribe(k => {
           this.movieId = k;
-          this.getAvailableRooms();
         });
       } 
     })
-  }
-
-  getAvailableRooms(): void {
-    if(isNaN(this.selectedDate.getTime()) || this.movieId < 0)
-      return;
-
-    let unavailableRooms = Array.from(new Set(this.cinemaData.screenings.filter( screening => {
-      if(this.selectedDate.toDateString() == screening.date.toDateString())
-      {
-          let timestamp = parseInt((screening.date.getTime() / 1000).toFixed(0)) + this.cinemaData.movies[screening.movieId].duration*60;
-          let newTimestamp = parseInt((this.selectedDate.getTime() / 1000).toFixed(0)) + this.cinemaData.movies[this.movieId].duration*60;
-
-          let ScreeningEnd = new Date(timestamp * 1000).getTime();
-          let ScreeningStart = screening.date.getTime();
-
-          let newScreeningEnd = new Date(newTimestamp * 1000).getTime();
-          let newScreeningStart = this.selectedDate.getTime();
-          
-          let isOverlapping = (newScreeningStart >= ScreeningStart && newScreeningStart <= ScreeningEnd) || (newScreeningEnd >= ScreeningStart && newScreeningEnd <= ScreeningEnd);
-          
-          return isOverlapping;
-      }
-      else return false;
-    }).map( screening => screening.roomId ))).map( (x:any) => parseInt(x) ); // it returns array of strings for some reason??
-
-    let rooms = this.cinemaData.rooms.map( (r, i) => i );
-    let availableRooms = rooms.filter( (roomId) => !unavailableRooms.includes(roomId) ); 
-
-    this.availableRooms = availableRooms;
-    console.log(availableRooms, unavailableRooms);
   }
 
   verifyForm(form: NgForm): void {
