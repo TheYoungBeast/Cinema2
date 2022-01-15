@@ -30,6 +30,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { PurchaseDetailsComponent } from './screenings/purchase-details/purchase-details.component';
 
 import { NumericInputDirective } from './directives/NumericInput/numeric-input.directive';
+import { FilterMoviesPipe } from './pipes/FilterMovies/filter-movies.pipe';
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full'},
@@ -73,7 +74,8 @@ const appRoutes: Routes = [
     HomePageComponent,
     PageNotFoundComponent,
     PurchaseDetailsComponent,
-    NumericInputDirective
+    NumericInputDirective,
+    FilterMoviesPipe,
   ],
   imports: [
     BrowserModule,
