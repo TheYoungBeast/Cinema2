@@ -32,6 +32,8 @@ import { PurchaseDetailsComponent } from './screenings/purchase-details/purchase
 import { NumericInputDirective } from './directives/NumericInput/numeric-input.directive';
 import { FilterMoviesPipe } from './pipes/FilterMovies/filter-movies.pipe';
 
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full'},
   { path: 'rooms', component: CinemaRoomsComponent },
@@ -79,6 +81,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    NgxChartsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
