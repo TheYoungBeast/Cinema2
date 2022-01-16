@@ -1,4 +1,24 @@
 <div class="main-container">
+    <div class="card">
+        <form [formGroup]="filterForm" (ngSubmit)="filterRanking(filterForm)">
+            <div class="input">
+                <input class="input-field" type="date" name="start" formControlName="start" required/>
+                <label class="input-label">Date (from):</label>
+            </div>
+            <div class="input">
+                <input class="input-field" type="date" formControlName="end" required/>
+                <label class="input-label">Date (to):</label>
+            </div>
+            <div class="warning" *ngIf="filterForm.errors || start.errors || end.errors">
+                <p *ngIf="filterForm.errors?.['dateRange']">The date range is invalid.</p>
+            </div>
+            <div class="action">
+                <button type="submit" [disabled]="!filterForm.valid" class="action-button">Show Ranking</button>
+            </div>
+        </form>
+    </div>
+
+    <ng-container *ngIf="results.length else elseTemplate">
         <ngx-charts-pie-chart
         [view]="view"
         [results]="results"
@@ -10,11 +30,16 @@
         [explodeSlices]="explodeSlices"
         [maxLabelLength]="maxLabelLength">
         </ngx-charts-pie-chart>
-        
-        <ngx-charts-pie-grid
-        [animations]="animations"
-        [view]="view"
-        [label]="label"
-        [results]="results">
-        </ngx-charts-pie-grid>
+    </ng-container>
+
+    <ng-template #elseTemplate>
+        <p style="display: table; margin: 30% auto 0 auto;">No content to display<p>
+    </ng-template>
+    
+    <ngx-charts-pie-grid
+    [animations]="animations"
+    [view]="view"
+    [label]="label"
+    [results]="results">
+    </ngx-charts-pie-grid>
 </div>

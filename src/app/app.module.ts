@@ -33,6 +33,7 @@ import { NumericInputDirective } from './directives/NumericInput/numeric-input.d
 import { FilterMoviesPipe } from './pipes/FilterMovies/filter-movies.pipe';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { DatePipe } from '@angular/common';
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full'},
@@ -87,7 +88,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes, { /*enableTracing: true*/ })
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

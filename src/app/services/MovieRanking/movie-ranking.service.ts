@@ -22,11 +22,14 @@ export class MovieRankingService {
         return [];
 
       cinemaData.screenings.forEach(screening => {
-        if(screening.date.valueOf() >= dateFrom.valueOf() && screening.date.valueOf() <= dateTo.valueOf())
+        let date = new Date(screening.date.getTime());
+        date.setHours(0);
+        date.setMinutes(0);
+        date.setSeconds(0);
+        if(date.valueOf() >= dateFrom.valueOf() && date.valueOf() <= dateTo.valueOf())
           ranking[movies[screening.movieId].title] = (ranking[movies[screening.movieId].title] || 0 ) + screening.occupation.length });
-      
     }
-    else if(dateFrom && !dateTo) 
+    /*else if(dateFrom && !dateTo) 
     {
       cinemaData.screenings.forEach(screening => {
         if(screening.date.valueOf() >= dateFrom.valueOf())
@@ -37,7 +40,7 @@ export class MovieRankingService {
       cinemaData.screenings.forEach(screening => {
         if(screening.date.valueOf() <= dateTo.valueOf())
           ranking[movies[screening.movieId].title] = (ranking[movies[screening.movieId].title] || 0 ) + screening.occupation.length });
-    }
+    }*/
     else 
     {
         cinemaData.screenings.forEach((screening) =>
