@@ -52,4 +52,11 @@ export class DataService {
       this.serviceData.next(this.serviceData.getValue());
     })
   }
+
+  editScreening(id: number, screening: Screening) {
+    this.httpSerivce.editScreening(id, screening).subscribe( data => {
+      this.serviceData.getValue().screenings[id] = screening;
+      this.serviceData.next(this.serviceData.getValue());
+    })
+  }
 }

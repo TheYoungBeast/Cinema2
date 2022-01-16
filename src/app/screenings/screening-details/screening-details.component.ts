@@ -107,8 +107,11 @@ export class ScreeningDetailsComponent implements OnInit, OnDestroy {
   }
 
   onBuyTickets(): void {
-    if(this.selectedSeats.length)
+    if(this.selectedSeats.length) {
+      this.screening.occupation.push(...this.selectedSeats);
+      this.cinemaDataService.editScreening(this.id, this.screening);
       this.purchased = true;
+    }
   }
 
   ngOnDestroy(): void {
