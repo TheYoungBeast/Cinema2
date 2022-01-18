@@ -41,11 +41,15 @@ const appRoutes: Routes = [
   { path: 'rooms/add', component: AddRoomComponent },
   { path: 'rooms/:id', component: RoomDetailsComponent },
   { path: 'rooms/:id/edit', component: EditRoomComponent },
+  { path: 'rooms/:id/remove', component: RemoveRoomComponent },
+
 
   { path: 'movies', component: CinemaMoviesComponent },
   { path: 'movies/add', component: AddMovieComponent },
   { path: 'movies/:id', component: MovieDetailsComponent },
   { path: 'movies/:id/edit', component: EditMovieComponent },
+  { path: 'movies/:id/remove', component: RemoveMovieComponent },
+
 
   { path: 'screenings', component: CinemaScreeningsComponent },
   { path: 'screenings/add', component: AddScreeningComponent },

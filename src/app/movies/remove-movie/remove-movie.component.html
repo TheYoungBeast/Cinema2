@@ -1,1 +1,17 @@
-<p>remove-movie works!</p>
+<div class="container main-container">
+    <div class="movie-header">
+        <h2>Would you like to remove {{movie.title}}?</h2>
+    </div>
+     <div class="movie-container">
+        <img [src]="movie.image" alt="movie img" />
+    </div>
+
+    <div class="wrapper">
+        <p *ngIf="removeDenied">
+            Unable to delete the movie. The movie is in use.
+        </p>
+
+        <button class="fancy-button pop-onhover bg-gradient1" (click)="removeMovie()"><span>Yes</span></button>
+        <a [routerLink]="['../..']"  class="fancy-button pop-onhover bg-gradient1"><span>No</span></a>
+    </div>
+</div>
