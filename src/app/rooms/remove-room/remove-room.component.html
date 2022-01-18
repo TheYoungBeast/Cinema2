@@ -1,1 +1,14 @@
-<p>remove-room works!</p>
+<div class="container main-container">
+    <div class="movie-header">
+        <h2>Would you like to remove {{room.roomNumber}}?</h2>
+    </div>
+    <div class="wrapper">
+        <div *ngIf="removeDenied" class="warning">
+            <p>
+                Unable to delete the room. The room is in use.
+            </p>
+        </div>
+        <a class="fancy-button pop-onhover bg-gradient1" (click)="removeRoom()"><span>Yes</span></a>
+        <a [routerLink]="['../']"  class="fancy-button pop-onhover bg-gradient1"><span>No</span></a>
+    </div>
+</div>

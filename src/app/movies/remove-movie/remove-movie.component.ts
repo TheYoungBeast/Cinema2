@@ -1,4 +1,3 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/interface/movie';
@@ -20,8 +19,6 @@ export class RemoveMovieComponent implements OnInit, OnDestroy {
   private sub: any;
   removeDenied: boolean = false;
 
-
-
   constructor(private route: ActivatedRoute, private cinemaDataService: DataService, private router: Router) { }
 
   ngOnInit(): void {
@@ -31,11 +28,8 @@ export class RemoveMovieComponent implements OnInit, OnDestroy {
 
     this.cinemaDataService.getData().subscribe( data => {
       if(data.movies) this.movie = data.movies[this.id]
-    });
-
-    this.cinemaDataService.getData().subscribe( data => {
       if(data.screenings) this.screenings = data.screenings;
-    })
+    });
   }
 
   removeMovie() {

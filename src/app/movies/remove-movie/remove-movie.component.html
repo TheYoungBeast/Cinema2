@@ -7,11 +7,13 @@
     </div>
 
     <div class="wrapper">
-        <p *ngIf="removeDenied">
-            Unable to delete the movie. The movie is in use.
-        </p>
+        <div *ngIf="removeDenied" class="warning">
+            <p>
+                Unable to delete the movie. The movie is in use.
+            </p>
+        </div>
 
-        <button class="fancy-button pop-onhover bg-gradient1" (click)="removeMovie()"><span>Yes</span></button>
-        <a [routerLink]="['../..']"  class="fancy-button pop-onhover bg-gradient1"><span>No</span></a>
+        <a class="fancy-button pop-onhover bg-gradient1" (click)="removeMovie()"><span>Yes</span></a>
+        <a [routerLink]="['../']"  class="fancy-button pop-onhover bg-gradient1"><span>No</span></a>
     </div>
 </div>
