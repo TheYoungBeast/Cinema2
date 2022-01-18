@@ -6,7 +6,7 @@
   border-collapse: collapse;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
-
+  border-radius: 15px;
   font-family: 'Montserrat';
   font-weight: 100;
   background: linear-gradient(-68deg,#ac32e4,#4801ff);
