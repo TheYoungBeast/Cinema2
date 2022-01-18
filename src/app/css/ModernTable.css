@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 .container-table table {
-  min-width: 800px;
+  min-width: auto;
   width: auto;
   border-collapse: collapse;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
-
+  border-radius: 15px;
   font-family: 'Montserrat';
   font-weight: 100;
   background: linear-gradient(-68deg,#ac32e4,#4801ff);
@@ -21,7 +21,7 @@
 .container-table th,
 .container-table td 
 {
-  width: calc(100%/7);
+  width: calc(100%/6);
   background-color: rgba(255,255,255,0.2);
   color: #fff;
   text-align: center;
