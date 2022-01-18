@@ -62,19 +62,19 @@ export class HttpService {
   }
 
   deleteMovie(index: number): Observable<HttpResponse<Object>> {
-    const url = this.baseUrl + `/delete/movies/${index}`;
+    const url = this.baseUrl + `delete/movies/${index}`;
     return this.http.delete(url, this.baseHttpOptions)
     .pipe( catchError(this.handleError) );
   }
 
   deleteRoom(index: number): Observable<HttpResponse<Object>> {
-    const url = this.baseUrl + `/delete/rooms/${index}`;
+    const url = this.baseUrl + `delete/rooms/${index}`;
     return this.http.delete< number >(url, this.baseHttpOptions)
     .pipe( catchError(this.handleError) );
   }
 
   deleteScreening(index: number): Observable<HttpResponse<Object>> {
-    const url = this.baseUrl + `/delete/screenings/${index}`;
+    const url = this.baseUrl + `delete/screenings/${index}`;
     return this.http.delete< number >(url, this.baseHttpOptions)
     .pipe( catchError(this.handleError) );
   }
