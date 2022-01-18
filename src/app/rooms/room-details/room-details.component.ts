@@ -7,7 +7,9 @@ import { DataService } from 'src/app/services/DataService/data-service.service';
 @Component({
   selector: 'app-room-details',
   templateUrl: './room-details.component.html',
-  styleUrls: ['./room-details.component.css', '../../css/ScreeningDetails.css']
+  styleUrls: ['./room-details.component.css', 
+  '../../css/ScreeningDetails.css',
+  '../../css/FancyButtons.css' ]
 })
 export class RoomDetailsComponent implements OnInit, OnDestroy {
   private sub: any;

@@ -30,7 +30,9 @@
         </div>
 
         <ng-container *ngIf="selectedSeats.length; else chooseSeatsInfo">
-            <button [ngStyle]="{'max-width': '30%', 'margin': 'auto auto', 'display': 'block'}" class="action-button" (click)="onBuyTickets()">Buy Tickets</button>
+            <div class="wrapper">
+                <a class="fancy-button pop-onhover bg-gradient3" (click)="onBuyTickets()"><span>Buy tickets</span></a>
+            </div>
         </ng-container>
 
         <ng-template #chooseSeatsInfo>

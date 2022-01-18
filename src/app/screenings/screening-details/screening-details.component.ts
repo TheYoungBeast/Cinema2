@@ -10,7 +10,9 @@ import { DataService } from 'src/app/services/DataService/data-service.service';
 @Component({
   selector: 'app-screening-details',
   templateUrl: './screening-details.component.html',
-  styleUrls: ['./screening-details.component.css', '../../css/ScreeningDetails.css']
+  styleUrls: ['./screening-details.component.css', 
+  '../../css/ScreeningDetails.css',
+  '../../css/FancyButtons.css']
 })
 
 export class ScreeningDetailsComponent implements OnInit, OnDestroy {

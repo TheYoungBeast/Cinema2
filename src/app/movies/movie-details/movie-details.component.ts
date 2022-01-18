@@ -7,7 +7,9 @@ import { DataService } from 'src/app/services/DataService/data-service.service';
 @Component({
   selector: 'app-movie-details',
   templateUrl: './movie-details.component.html',
-  styleUrls: ['./movie-details.component.css', '../../css/ScreeningDetails.css']
+  styleUrls: ['./movie-details.component.css', 
+  '../../css/ScreeningDetails.css',
+  '../../css/FancyButtons.css']
 })
 export class MovieDetailsComponent implements OnInit, OnDestroy {
   movie: Movie = {} as Movie;

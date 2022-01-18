@@ -5,7 +5,9 @@ import { DataService } from 'src/app/services/DataService/data-service.service';
 @Component({
   selector: 'app-cinema-rooms',
   templateUrl: './cinema-rooms.component.html',
-  styleUrls: ['./cinema-rooms.component.css', '../../css/ScreeningDetails.css']
+  styleUrls: ['./cinema-rooms.component.css', 
+  '../../css/ScreeningDetails.css',
+  '../../css/FancyButtons.css' ]
 })
 export class CinemaRoomsComponent implements OnInit {
   roomList: Array< Room > = [];

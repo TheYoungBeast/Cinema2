@@ -1,36 +1,43 @@
 <div class="main-container" id="screening-list">
-    <table class="table-screenings">
-        <tbody>
-            <tr>
-                <th></th>
-                <th>Title</th>
-                <th>Time</th>
-                <th>Date</th>
-                <th>Room</th>
-                <th>Details</th>
-            </tr>
-            <tr *ngFor="let screening of data.screenings; let i = index">
-                <td>
-                    <img [src]="data.movies[screening.movieId].image"/>
-                </td>
-                <td>
-                    {{data.movies[screening.movieId].title | titlecase}}
-                </td>
-                <td>
-                    {{screening.date | date:'HH:mm'}}
-                </td>
-                <td>
-                    {{screening.date | date:'dd.MM.YYYY'}}
-                </td>
-                <td>
-                    {{data.rooms[screening.roomId].roomNumber}}
-                </td>
-                <td>
-                    <a [routerLink]="['./', i]">see more</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container-table">
 
-    <a [routerLink]="['./add']"><button>Add Screening</button></a>
+        <h1><span class="blue">&lt;</span>All<span class="blue">&gt;</span> <span class="yellow">Screenings</span></h1>
+
+        <table>
+            <tbody>
+                <tr>
+                    <th></th>
+                    <th>Title</th>
+                    <th>Time</th>
+                    <th>Date</th>
+                    <th>Room</th>
+                    <th>Details</th>
+                </tr>
+                <tr *ngFor="let screening of data.screenings; let i = index">
+                    <td>
+                        <img [src]="data.movies[screening.movieId].image"/>
+                    </td>
+                    <td>
+                        {{data.movies[screening.movieId].title | titlecase}}
+                    </td>
+                    <td>
+                        {{screening.date | date:'HH:mm'}}
+                    </td>
+                    <td>
+                        {{screening.date | date:'dd.MM.YYYY'}}
+                    </td>
+                    <td>
+                        {{data.rooms[screening.roomId].roomNumber}}
+                    </td>
+                    <td>
+                        <a [routerLink]="['./', i]" class="fancy-button pop-onhover bg-gradient3"><span>Buy 🎫</span></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="wrapper">
+        <a [routerLink]="['./add']" class="fancy-button pop-onhover bg-gradient3"><span>Add Screening</span></a>
+    </div>
 </div>

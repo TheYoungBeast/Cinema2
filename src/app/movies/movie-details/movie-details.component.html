@@ -16,10 +16,10 @@
     <div class="movie-desc">
         <p>{{movie.description}}</p>
     </div>
-    <div class="movie-buttons">
-        <span>
-            <a [routerLink]="['./','edit']"><button>Edit</button></a>
-            <a [routerLink]="['./', 'remove']"><button>Remove</button></a>
-        </span>
+
+    <div class="wrapper">
+        <a [routerLink]="['./','edit']" class="fancy-button pop-onhover bg-gradient1"><span>Edit</span></a>
+        <a [routerLink]="['./', 'remove']" class="fancy-button pop-onhover bg-gradient1"><span>Remove</span></a>
     </div>
+    
 </div>

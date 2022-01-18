@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.container-table table {
+  min-width: 800px;
+  width: auto;
+  border-collapse: collapse;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+
+  font-family: 'Montserrat';
+  font-weight: 100;
+  background: linear-gradient(-68deg,#ac32e4,#4801ff);
+}
+
+.container-table td > img {
+  padding-top: 10px;
+  width: 60%;
+  height: auto;
+}
+
+.container-table th,
+.container-table td 
+{
+  width: calc(100%/7);
+  background-color: rgba(255,255,255,0.2);
+  color: #fff;
+  text-align: center;
+}
+
+.container-table th {
+  background-color: rgba(255,255,255,0.32);
+}
+.container-table tbody tr:hover {
+  background-color: rgba(255,255,255, 0.1);
+}
+.container-table tbody td {
+  position: relative;
+}
+.container-table tbody td:hover:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -9999px;
+  bottom: -9999px;
+  background-color: rgba(255,255,255, 0.1);
+  
+}

@@ -62,6 +62,7 @@ export class TrendingScreeningsComponent implements OnInit {
     this.today.setHours(0);
     this.today.setMinutes(0);
     this.today.setSeconds(0);
+    this.today.setMilliseconds(0);
     this.startDate = this.today;
     this.endDate = new Date(this.today.getTime() + 604800*1000); // week
 
@@ -85,6 +86,7 @@ export class TrendingScreeningsComponent implements OnInit {
         this.startDate.setHours(0);
         this.startDate.setMinutes(0);
         this.startDate.setSeconds(0);
+        this.startDate.setMilliseconds(0);
       }
     });
 
@@ -94,6 +96,7 @@ export class TrendingScreeningsComponent implements OnInit {
         this.endDate.setHours(0);
         this.endDate.setMinutes(0);
         this.endDate.setSeconds(0);
+        this.endDate.setMilliseconds(0);
       }
     });
   }

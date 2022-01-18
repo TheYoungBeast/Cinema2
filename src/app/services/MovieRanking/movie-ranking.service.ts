@@ -26,6 +26,8 @@ export class MovieRankingService {
         date.setHours(0);
         date.setMinutes(0);
         date.setSeconds(0);
+        date.setMilliseconds(0);
+        console.log(dateFrom.getTime() <= date.getTime(), dateTo.getTime() >= date.getTime(), movies[screening.movieId].title);
         if(date.valueOf() >= dateFrom.valueOf() && date.valueOf() <= dateTo.valueOf())
           ranking[movies[screening.movieId].title] = (ranking[movies[screening.movieId].title] || 0 ) + screening.occupation.length });
     }
