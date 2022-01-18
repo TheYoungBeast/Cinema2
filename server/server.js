@@ -241,6 +241,8 @@ app.delete("/delete/movies/:id", (req, res) => {
     {
         if(id >= movies.length || id < 0)
             res.status(500).send("Invalid movie index.");
+        else if(!screenings.filter( v => v.movieId == id).length)
+            res.status(500).send("Unable to delete the movie");
         else
         {
             movies.splice(id, 1);
@@ -258,6 +260,8 @@ app.delete("/delete/rooms/:id", (req, res) => {
     {
         if(id >= rooms.length || id < 0)
             res.status(500).send("Invalid room index.");
+        else if(!screenings.filter( v => v.roomId == id).length)
+            res.status(500).send("Unable to delete the room");
         else
         {
             rooms.splice(id, 1);

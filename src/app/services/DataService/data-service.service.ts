@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { CinemaData } from 'src/app/interface/cinema-data';
 import { Movie } from 'src/app/interface/movie';
 import { Room } from 'src/app/interface/room';
@@ -14,10 +14,13 @@ export class DataService {
   private readonly dataObservable: Observable< CinemaData > = this.serviceData.asObservable();
 
   constructor(private httpSerivce: HttpService) { 
-    httpSerivce.fetchAllData().subscribe( data => {
-      if(!data.screenings) return;
-      data.screenings.forEach( v => v.date = new Date(v.date) );
-      this.serviceData.next(data);
+    httpSerivce.fetchAllData().subscribe( resp => {
+      if(resp.status === 200) {
+        if(resp.body) {
+          resp.body.screenings.forEach( v => v.date = new Date(v.date) );
+          this.serviceData.next(resp.body);
+        }
+      }
     }, error => console.log(error) );
   }
 
@@ -26,36 +29,64 @@ export class DataService {
   }
 
   addMovie(movie: Movie): void {
-    this.httpSerivce.addMovie(movie).subscribe( data => {
+    this.httpSerivce.addMovie(movie).subscribe( resp => {
+      if(resp.status !== 201) return;
+
       this.serviceData.getValue().movies.push(movie);
       this.serviceData.next(this.serviceData.getValue());
     })
   }
 
   addRoom(room: Room): void {
-    this.httpSerivce.addRoom(room).subscribe( data => {
+    this.httpSerivce.addRoom(room).subscribe( resp => {
+      if(resp.status !== 201) return;
+
       this.serviceData.getValue().rooms.push(room);
       this.serviceData.next(this.serviceData.getValue());
     })
   }
 
   addScreening(screening: Screening): void {
-    this.httpSerivce.addScreening(screening).subscribe( data => {
+    this.httpSerivce.addScreening(screening).subscribe( resp => {
+      if(resp.status !== 201) return;
+
       this.serviceData.getValue().screenings.push(screening);
       this.serviceData.next(this.serviceData.getValue());
     })
   }
 
   editMovie(id: number, movie: Movie) {
-    this.httpSerivce.editMovie(id, movie).subscribe( data => {
+    this.httpSerivce.editMovie(id, movie).subscribe( resp => {
+      if(resp.status !== 200) return;
+
       this.serviceData.getValue().movies[id] = movie;
       this.serviceData.next(this.serviceData.getValue());
     })
   }
 
   editScreening(id: number, screening: Screening) {
-    this.httpSerivce.editScreening(id, screening).subscribe( data => {
+    this.httpSerivce.editScreening(id, screening).subscribe( resp => {
+      if(resp.status !== 200) return;
+
       this.serviceData.getValue().screenings[id] = screening;
+      this.serviceData.next(this.serviceData.getValue());
+    })
+  }
+
+  deleteMovie(id: number) {
+    this.httpSerivce.deleteMovie(id).subscribe( resp => {
+      if(resp.status !== 204) throwError(resp.statusText);
+
+      this.serviceData.getValue().movies.splice(id, 1);
+      this.serviceData.next(this.serviceData.getValue());
+    })
+  }
+
+  deleteRoom(id: number) {
+    this.httpSerivce.deleteRoom(id).subscribe( resp => {
+      if(resp.status !== 204) throwError(resp.statusText);
+
+      this.serviceData.getValue().rooms.splice(id, 1);
       this.serviceData.next(this.serviceData.getValue());
     })
   }
