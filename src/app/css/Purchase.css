@@ -4,6 +4,10 @@
     font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
 }
 
+html {
+    min-width: 720px;
+}
+
 body {
     background-image: url("../images/background.jpg");
     background-repeat: repeat;
