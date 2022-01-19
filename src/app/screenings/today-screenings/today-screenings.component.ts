@@ -21,10 +21,10 @@ export class TodayScreeningsComponent implements OnInit {
    ngOnInit(): void {
     this.cinemaDataService.getData().subscribe( data => {
       this.data = data;
-    })
 
-    // checks todays screenings
-    this.todaysScreenings = this.data.screenings.filter(s => this.isToday(s.date))
+      // checks todays screenings
+      this.todaysScreenings = this.data.screenings.filter(s => this.isToday(s.date))
+    });
   }
 
   isToday = (date: Date) => {
