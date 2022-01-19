@@ -34,6 +34,8 @@ import { FilterMoviesPipe } from './pipes/FilterMovies/filter-movies.pipe';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DatePipe } from '@angular/common';
+import { TodayScreeningsComponent } from './screenings/today-screenings/today-screenings.component';
+import { CurrentScreeningsComponent } from './screenings/current-screenings/current-screenings.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full'},
@@ -83,6 +85,8 @@ const appRoutes: Routes = [
     PurchaseDetailsComponent,
     NumericInputDirective,
     FilterMoviesPipe,
+    TodayScreeningsComponent,
+    CurrentScreeningsComponent,
   ],
   imports: [
     BrowserModule,

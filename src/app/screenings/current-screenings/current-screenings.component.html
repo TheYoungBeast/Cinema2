@@ -1,0 +1,43 @@
+<div class="main-container" id="screening-list">
+    <div class="container-table">
+        <h1 class="wrapper">Currently playing</h1>
+
+        <table *ngIf="currentScreenings.length; else elseBlock">
+            <tbody>
+                <tr>
+                    <th></th>
+                    <th>Title</th>
+                    <th>Time</th>
+                    <th>Date</th>
+                    <th>Room</th>
+                    <th>Details</th>
+                </tr>
+                <tr *ngFor="let screening of currentScreenings; let i = index">
+                    <td>
+                        <img [src]="data.movies[screening.movieId].image"/>
+                    </td>
+                    <td>
+                        {{data.movies[screening.movieId].title | titlecase}}
+                    </td>
+                    <td>
+                        {{screening.date | date:'HH:mm'}}
+                    </td>
+                    <td>
+                        {{screening.date | date:'dd.MM.YYYY'}}
+                    </td>
+                    <td>
+                        {{data.rooms[screening.roomId].roomNumber}}
+                    </td>
+                    <td>
+                        <a [routerLink]="['./', i]" class="fancy-button pop-onhover bg-gradient3"><span>Buy 🎫</span></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <ng-template #elseBlock>
+            <div class="warning wrapper">
+                <p style="font-size: xx-large;">There aren't any screenings planned for today :(</p>
+            </div>
+        </ng-template>
+    </div>
+</div>

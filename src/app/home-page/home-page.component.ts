@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CinemaData } from '../interface/cinema-data';
-import { Screening } from '../interface/screening';
-import { DataService } from '../services/DataService/data-service.service';
 
 @Component({
   selector: 'app-home-page',
@@ -11,30 +8,15 @@ import { DataService } from '../services/DataService/data-service.service';
   '../css/ScreeningDetails.css',
   '../css/FancyButtons.css' ]
 })
-
-
 export class HomePageComponent implements OnInit {
-  data: CinemaData = {} as CinemaData;
-  todaysScreenings: Screening[] = [] as Screening[];
-  today: Date = new Date();
+  toggle: boolean = false;
 
-  constructor(private cinemaDataService: DataService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.cinemaDataService.getData().subscribe( data => {
-      this.data = data;
-    })
-
-    // checks todays screenings
-    this.todaysScreenings = this.data.screenings.filter(s => this.isToday(s.date))
   }
 
-  isToday = (date: Date) => {
-    const today = new Date()
-    console.log(today)
-    return date.getDate() == today.getDate() &&
-    date.getMonth() == today.getMonth() &&
-    date.getFullYear() == today.getFullYear()
+  toggleChange() {
+    this.toggle = !this.toggle;
   }
-
 }
