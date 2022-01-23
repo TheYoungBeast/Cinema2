@@ -14,7 +14,11 @@
 
         <div class="theatre" (click)="onSeatSelected($event)">
             <div class="cinema-screen">
-                <img class="film-gif" src="https://thumbs.gfycat.com/ConcernedWelldocumentedClownanemonefish-max-1mb.gif"/>
+                <video class="trailer-screen" [controls]="false" [autoplay]="true" [loop]="true" [muted]="true">
+                    <source [src]="movie.trailer" type="video/mp4"/>
+                    <!--Your browser does not support the video tag.-->
+                    <img class="film-gif" src="https://thumbs.gfycat.com/ConcernedWelldocumentedClownanemonefish-max-1mb.gif"/>
+                </video>
             </div>
             <div class="cinema-seats left">
                 <div *ngFor="let item of [].constructor(rows); let r=index" [ngClass]="'cinema-row row-'+(r+1)">
