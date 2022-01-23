@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { CinemaData } from 'src/app/interface/cinema-data';
 import { Screening } from 'src/app/interface/screening';
 import { FormControl, NgForm } from '@angular/forms';
@@ -12,7 +12,7 @@ import { AvailableRoomsService } from 'src/app/services/AvailableRooms/available
   templateUrl: './edit-screening.component.html',
   styleUrls: ['./edit-screening.component.css']
 })
-export class EditScreeningComponent implements OnInit, OnDestroy {
+export class EditScreeningComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('date', {static: true}) dateInput: FormControl = {} as FormControl;
   @ViewChild('hours', {static: true}) hoursInput: FormControl = {} as FormControl;
   @ViewChild('movieId', {static: true}) movieIdSelect: FormControl = {} as FormControl;
@@ -25,10 +25,6 @@ export class EditScreeningComponent implements OnInit, OnDestroy {
   private _selectedDate: Date = new Date();
   private movieId: number = -1;
   today: Date = new Date();
-
-  private subDate: any = null;
-  private subHours: any = null;
-  private subMovie: any = null;
 
   constructor(private cinemaDataService: DataService, private route: ActivatedRoute, private router: Router, private _availableRoomsService: AvailableRoomsService) { }
 
@@ -45,60 +41,61 @@ export class EditScreeningComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.sub = this.route.params.subscribe( params => {
-    this.id = +params['id'];
-  })
-  this.cinemaDataService.getData().subscribe( data => {
-    if(!data.screenings)
-      return;
-    this.cinemaData = data;
-    this.screening = this.cinemaData.screenings[this.id];
-   });
-}
-
-
-ngAfterViewInit(): void {
-  this.dateInput.valueChanges.subscribe( d => {
-    let date = new Date(this._selectedDate.getTime());
-    this._selectedDate = new Date(d);
-
-    if(isNaN(date.getTime())) return;
-
-    this._selectedDate.setHours(date.getHours());
-    this._selectedDate.setMinutes(date.getMinutes());
-    this._selectedDate.setSeconds(date.getSeconds());
-    this._selectedDate.setMilliseconds(0);
-  });
-
-  this.hoursInput.valueChanges.subscribe( h => {
-    if(!h) return;
-    this.selectedDate.setHours(parseInt(h.split(':')[0]));
-    this.selectedDate.setMinutes(parseInt(h.split(':')[1]));
-    this.selectedDate.setSeconds(0);
-    this.selectedDate.setMilliseconds(0);
-  });
-
-  this.movieIdSelect.valueChanges.subscribe( id => this.movieId = id );
-}
-
-verifyForm(form: NgForm): void {
-  if(form.valid) {
-    let screening: Screening = form.value;
-    screening.date = new Date(form.value.date);
-    screening.date.setHours(parseInt(form.value.hours.split(':')[0]))
-    screening.date.setMinutes(parseInt(form.value.hours.split(':')[1]));
-    screening.date.setSeconds(0);
-    screening.date.setMilliseconds(0);
-
-    if(this.cinemaData.screenings[this.id].occupation == null)
-      screening.occupation = [];
-    else
-      screening.occupation = this.cinemaData.screenings[this.id].occupation;
-      
-    this.cinemaDataService.editScreening(this.id, screening);
-    this.router.navigate(['screenings']);
+      this.sub = this.route.params.subscribe( params => {
+      this.id = +params['id'];
+    })
+    this.cinemaDataService.getData().subscribe( data => {
+      if(!data.screenings)
+        return;
+      this.cinemaData = data;
+      this.screening = this.cinemaData.screenings[this.id];
+    });
   }
-}
+
+
+  ngAfterViewInit(): void {
+    this.dateInput.valueChanges.subscribe( d => {
+      let date = new Date(this._selectedDate.getTime());
+      this._selectedDate = new Date(d);
+
+      if(isNaN(date.getTime())) return;
+
+      this._selectedDate.setHours(date.getHours());
+      this._selectedDate.setMinutes(date.getMinutes());
+      this._selectedDate.setSeconds(date.getSeconds());
+      this._selectedDate.setMilliseconds(0);
+    });
+
+    this.hoursInput.valueChanges.subscribe( h => {
+      if(!h) return;
+      this.selectedDate.setHours(parseInt(h.split(':')[0]));
+      this.selectedDate.setMinutes(parseInt(h.split(':')[1]));
+      this.selectedDate.setSeconds(0);
+      this.selectedDate.setMilliseconds(0);
+    });
+
+    this.movieIdSelect.valueChanges.subscribe( id => {
+      if(id) this.movieId = id });
+  }
+
+  verifyForm(form: NgForm): void {
+    if(form.valid) {
+      let screening: Screening = form.value;
+      screening.date = new Date(form.value.date);
+      screening.date.setHours(parseInt(form.value.hours.split(':')[0]))
+      screening.date.setMinutes(parseInt(form.value.hours.split(':')[1]));
+      screening.date.setSeconds(0);
+      screening.date.setMilliseconds(0);
+
+      if(this.cinemaData.screenings[this.id].occupation == null)
+        screening.occupation = [];
+      else
+        screening.occupation = this.cinemaData.screenings[this.id].occupation;
+        
+      this.cinemaDataService.editScreening(this.id, screening);
+      this.router.navigate(['screenings']);
+    }
+  }
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();

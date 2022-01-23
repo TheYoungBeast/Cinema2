@@ -22,6 +22,7 @@ export class TodayScreeningsComponent implements OnInit {
     this.cinemaDataService.getData().subscribe( data => {
       this.data = data;
 
+      if(!data.screenings) return;
       // checks todays screenings
       this.todaysScreenings = this.data.screenings.filter(s => this.isToday(s.date))
     });

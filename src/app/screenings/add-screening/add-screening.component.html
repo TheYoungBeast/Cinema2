@@ -10,8 +10,10 @@
         <form class="card-form" #f="ngForm" (ngSubmit)="verifyForm(f)">
             <div class="input">
                 <select class="input-field" name="movieId" id="select-movie" #movieId="ngModel" ngModel ngControl="movieId" required>
-                    <ng-container *ngFor="let item of cinemaData.movies; let i=index">
-                        <option [value]="i">{{ item.title }}</option>
+                    <ng-container *ngIf="cinemaData.movies">
+                        <ng-container *ngFor="let item of cinemaData.movies; let i=index">
+                            <option [value]="i">{{ item.title }}</option>
+                        </ng-container>
                     </ng-container>
                 </select>
                 <label class="input-label">Select Movie</label>
