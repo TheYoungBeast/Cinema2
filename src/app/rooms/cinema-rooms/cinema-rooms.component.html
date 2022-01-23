@@ -1,16 +1,36 @@
 <div class="main-container">
-    <div>
-        <h3>Room list:</h3>
-        <ol>
-            <li *ngFor="let room of roomList; let i=index">
-                <span>
-                    <a [routerLink]="['./', i]">{{ room.roomNumber }}</a>
-                </span>
-                <span>
-                    Room Capacity: {{ room.capacity }}
-                </span>
-            </li>
-        </ol>
+    <div class="container-table">
+        <h1 class="page-title">Room list</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Room number
+                    </th>
+                    <th>
+                        Capacity
+                    </th>
+                    <th>
+                        Details
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let room of roomList; let i=index">
+                    <td>
+                        <b>{{room.roomNumber}}</b>
+                    </td>
+                    <td>
+                        {{room.capacity}}
+                    </td>
+                    <td>
+                        <a [routerLink]="['./', i]" class="fancy-button pop-onhover bg-gradient2"><span>Details</span></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
     </div>
 
     <div class="wrapper">
