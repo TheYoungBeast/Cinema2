@@ -25,7 +25,9 @@ export class EditMovieComponent implements OnInit, OnDestroy {
       this.id = +params['id'];
     })
 
-    this.cinemaDataService.getData().subscribe( data => this.movie = data.movies[this.id] );
+    this.cinemaDataService.getData().subscribe( data => {
+      if(!data.movies) return;
+      this.movie = data.movies[this.id] });
   }
 
   verifyForm(form: NgForm): void {
