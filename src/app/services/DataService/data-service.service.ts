@@ -64,6 +64,15 @@ export class DataService {
     })
   }
 
+  editRoom(id: number, room: Room) {
+    this.httpSerivce.editRoom(id, room).subscribe( resp => {
+      if(resp.status !== 200) return;
+
+      this.serviceData.getValue().rooms[id] = room;
+      this.serviceData.next(this.serviceData.getValue());
+    })
+  }
+
   editScreening(id: number, screening: Screening) {
     this.httpSerivce.editScreening(id, screening).subscribe( resp => {
       if(resp.status !== 200) return;
