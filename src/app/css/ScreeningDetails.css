@@ -45,7 +45,16 @@
     transform: scale(.9) translateY(-110px);  
 }
 
-
+.cinema-screen .trailer-screen {
+  padding: 15px; 
+  position: absolute;
+  z-index: -1; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover;
+}
 
 .cinema-seats {
   display: flex;
