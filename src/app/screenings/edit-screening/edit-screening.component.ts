@@ -90,7 +90,15 @@ verifyForm(form: NgForm): void {
       screening.date.setHours(parseInt(form.value.hours.split(':')[0]))
       screening.date.setMinutes(parseInt(form.value.hours.split(':')[1]));
       screening.date.setSeconds(0);
-      screening.occupation = this.cinemaData.screenings[this.id].occupation;
+      if(this.cinemaData.screenings[this.id].occupation == null)
+      {
+        screening.occupation = [];
+      }
+      else
+      {
+        screening.occupation = this.cinemaData.screenings[this.id].occupation;
+      }
+      
     this.cinemaDataService.editScreening(this.id, form.value as Screening);
     this.router.navigate(['screenings']);
   }
