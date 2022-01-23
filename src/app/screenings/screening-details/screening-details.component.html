@@ -1,13 +1,16 @@
 <div class="main-container">
     <div *ngIf="!purchased; else purchaseInfo">
-        <ul>
-            <li>Title: {{movie.title}}</li>
-            <li>Duration: {{movie.duration}} minutes</li>
-            <li>{{screening.date | date:'dd:MM:YYYY'}} {{screening.date | date:'HH:mm'}}</li>
-            <li>Room No: {{room.roomNumber}}</li>
-            <li>Ticekts left: {{ screening.occupation? (room.capacity-screening.occupation.length) : 'loading...'}}</li>
-            <a [routerLink]="[ './', 'edit' ]"><button>Edit</button></a>
-        </ul>
+        <div class="list-information-content">
+            <ul class="screening-information-list">
+                <li><span class="screening-label">Title:</span> {{movie.title}}</li>
+                <li><span class="screening-label">Duration:</span> {{movie.duration}} minutes</li>
+                <li><span class="screening-label">Date:</span> {{screening.date | date:'dd:MM:YYYY'}} <span class="screening-label">Time:</span> {{screening.date | date:'HH:mm'}}</li>
+                <li><span class="screening-label">Room No:</span> {{room.roomNumber}}</li>
+                <li><span class="screening-label">Ticekts left:</span> {{ screening.occupation? (room.capacity-screening.occupation.length) : 'loading...'}}</li>
+                <a [routerLink]="[ './', 'edit' ]" class="fancy-button pop-onhover bg-gradient3"><span>Edit</span></a>
+            </ul>
+        </div>
+       
 
         <div class="theatre" (click)="onSeatSelected($event)">
             <div class="cinema-seats left">

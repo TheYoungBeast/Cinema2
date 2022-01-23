@@ -6,10 +6,16 @@
     </div>
 
     <div>
-        <ol>
-            <li *ngFor="let movie of moviesList | filterMovies: filter; let i = index">
-                <a [routerLink]="['/movies/', i]">{{movie.title}}</a>
-                <span> {{movie.duration}}</span>
+        <ol class="list-of-movies">
+            <li class="list-movie-item" *ngFor="let movie of moviesList | filterMovies: filter; let i = index" >
+                <a class="link-movie-item" [routerLink]="['/movies/', i]">
+                    <div class="movie-block">
+                        <img class="movie-img" src={{movie.image}}/>
+                        <h2 class="movie-title">{{movie.title}}</h2> 
+                        <span class="movie-duration"> duration: {{movie.duration}} min</span>
+                    </div>                                       
+                </a>
+                
             </li>
         </ol>
     </div>
