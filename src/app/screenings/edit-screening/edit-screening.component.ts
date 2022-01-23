@@ -84,20 +84,18 @@ ngAfterViewInit(): void {
 verifyForm(form: NgForm): void {
   if(form.valid) {
     let screening: Screening = form.value;
-      screening.date = new Date(form.value.date);
-      screening.date.setHours(parseInt(form.value.hours.split(':')[0]))
-      screening.date.setMinutes(parseInt(form.value.hours.split(':')[1]));
-      screening.date.setSeconds(0);
-      if(this.cinemaData.screenings[this.id].occupation == null)
-      {
-        screening.occupation = [];
-      }
-      else
-      {
-        screening.occupation = this.cinemaData.screenings[this.id].occupation;
-      }
+    screening.date = new Date(form.value.date);
+    screening.date.setHours(parseInt(form.value.hours.split(':')[0]))
+    screening.date.setMinutes(parseInt(form.value.hours.split(':')[1]));
+    screening.date.setSeconds(0);
+    screening.date.setMilliseconds(0);
+
+    if(this.cinemaData.screenings[this.id].occupation == null)
+      screening.occupation = [];
+    else
+      screening.occupation = this.cinemaData.screenings[this.id].occupation;
       
-    this.cinemaDataService.editScreening(this.id, form.value as Screening);
+    this.cinemaDataService.editScreening(this.id, screening);
     this.router.navigate(['screenings']);
   }
 }
