@@ -1,9 +1,29 @@
 <div class="main-container">
-    <div>
-        <ul>
-            <li>Room Number: {{room.roomNumber}}</li>
-            <li>Room Capacity: {{room.capacity}}</li>
-        </ul>
+
+    <h1 class="room-number">room {{room.roomNumber}}</h1>
+    <span class="room-capacity">Capacity: {{room.capacity}} seats</span>
+
+    <div class="theatre">
+        <div class="cinema-screen">
+            <img class="film-gif" src="https://thumbs.gfycat.com/ConcernedWelldocumentedClownanemonefish-max-1mb.gif"/>
+        </div>
+        <div class="cinema-seats left">
+            <div *ngFor="let item of [].constructor(rows); let r=index" [ngClass]="'cinema-row row-'+(r+1)">
+                <div *ngFor="let item of [].constructor(seatsPerRow); let s=index" 
+                    [attr.data-seat-no]="getSeatNumber(r, s, 'l')" class="seat">
+                    {{ getSeatNumber(r, s, 'l') }}
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-seats right">
+            <div *ngFor="let item of [].constructor(rows); let r=index" [ngClass]="'cinema-row row-'+(r+1)">
+                <div *ngFor="let item of [].constructor(seatsPerRow); let s=index" 
+                    [attr.data-seat-no]="getSeatNumber(r, s, 'r')" class="seat">
+                    {{ getSeatNumber(r, s, 'r') }}
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="wrapper">

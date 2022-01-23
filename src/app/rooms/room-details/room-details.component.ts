@@ -16,6 +16,9 @@ export class RoomDetailsComponent implements OnInit, OnDestroy {
   private id: number = 0;
   room: Room = {} as Room;
 
+  rows: number = 0;
+  seatsPerRow: number = 0;
+
   constructor(private route: ActivatedRoute, private cinemaDataService: DataService) { }
 
   ngOnInit(): void {
@@ -25,8 +28,41 @@ export class RoomDetailsComponent implements OnInit, OnDestroy {
 
     this.cinemaDataService.getData().subscribe( data => {
       if(data.rooms) this.room = data.rooms[this.id]
+
+      const maxRowNo = 7;
+      let bestRowNo = 0;
+      let bestRestModulo = this.room.capacity % maxRowNo;
+
+      for(let i = 4; i <= maxRowNo; i++ )
+      {
+          let modulo = this.room.capacity % i;
+          if(modulo <= bestRestModulo)
+          {
+              bestRestModulo = modulo;
+              bestRowNo = i;
+          }
+      }
+
+      const seatsPerSide = this.room.capacity/2;
+      this.seatsPerRow = Math.ceil(seatsPerSide/bestRowNo);
+      this.rows = bestRowNo;
     });
+
   }
+
+
+getSeatNumber(row: number, column: number, side: string) : number {
+  let seatNumber = (row+1)+(column*this.rows);
+
+  switch(side.toLowerCase()){
+    case 'l':
+      return seatNumber;
+    case 'r':
+      return this.rows*this.seatsPerRow + seatNumber;
+    default:
+      throw new Error('Unrecognized threatre side: ' + side);
+  }
+}
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();

@@ -13,6 +13,9 @@
        
 
         <div class="theatre" (click)="onSeatSelected($event)">
+            <div class="cinema-screen">
+                <img class="film-gif" src="https://thumbs.gfycat.com/ConcernedWelldocumentedClownanemonefish-max-1mb.gif"/>
+            </div>
             <div class="cinema-seats left">
                 <div *ngFor="let item of [].constructor(rows); let r=index" [ngClass]="'cinema-row row-'+(r+1)">
                     <div *ngFor="let item of [].constructor(seatsPerRow); let s=index" 

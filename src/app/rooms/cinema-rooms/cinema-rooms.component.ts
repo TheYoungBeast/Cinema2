@@ -7,7 +7,8 @@ import { DataService } from 'src/app/services/DataService/data-service.service';
   templateUrl: './cinema-rooms.component.html',
   styleUrls: ['./cinema-rooms.component.css', 
   '../../css/ScreeningDetails.css',
-  '../../css/FancyButtons.css' ]
+  '../../css/FancyButtons.css',
+  '../../css/ModernTable.css' ]
 })
 export class CinemaRoomsComponent implements OnInit {
   roomList: Array< Room > = [];

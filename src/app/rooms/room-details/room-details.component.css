@@ -1,0 +1,38 @@
+.room-number, .room-capacity
+{
+    text-align: center;   
+}
+
+.room-number
+{   
+    margin-bottom: 5px;
+    color: #44ea76;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.room-capacity
+{
+    margin: 5px auto 30px auto;
+
+    color:#777;
+    font-weight: 300;
+    font-size: 18px;
+    font-style: italic;
+}
+
+
+.cinema-seats .seat:hover
+{
+    cursor: default;
+}
+
+
+@media all and (max-device-width:500px) {
+
+    .theatre
+    {
+        visibility:hidden;
+    }
+    
+}
