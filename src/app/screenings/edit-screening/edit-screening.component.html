@@ -29,7 +29,7 @@
             </div>
 
             <div class="input">
-                <input class="input-field" type="time" id="select-time" min="{{today | date:'HH:mm'}}" max="23:00" name="hours" #hours="ngModel" [ngModel]="screening.date | date:'HH:mm'" required/>
+                <input class="input-field ng-dirty" type="time" id="select-time" min="{{today | date:'HH:mm'}}" max="23:00" name="hours" #hours="ngModel" [ngModel]="screening.date | date:'HH:mm'" required/>
                 <label class="input-label">Set Hour</label>
             </div>
             <div *ngIf="hours.invalid && hours.touched" class="warning">
