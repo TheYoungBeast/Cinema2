@@ -49,6 +49,7 @@ export class EditScreeningComponent implements OnInit, AfterViewInit, OnDestroy 
         return;
       this.cinemaData = data;
       this.screening = this.cinemaData.screenings[this.id];
+     // this.movieId = this.cinemaData.screenings[this.id].movieId;
     });
   }
 
@@ -75,7 +76,7 @@ export class EditScreeningComponent implements OnInit, AfterViewInit, OnDestroy 
     });
 
     this.movieIdSelect.valueChanges.subscribe( id => {
-      if(id) this.movieId = id });
+      if(!isNaN(id)) this.movieId = id });
   }
 
   verifyForm(form: NgForm): void {

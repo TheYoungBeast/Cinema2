@@ -9,7 +9,7 @@
 
         <form class="card-form" #f="ngForm"  (ngSubmit)="verifyForm(f)">
             <div class="input">
-                <input type="text" class="input-field" name="roomNumber" #roomNumber="ngModel"  minlength="3" [ngModel]="room.roomNumber" required/>
+                <input type="text" NumericInput [min]=1 class="input-field" name="roomNumber" #roomNumber="ngModel"  minlength="3" maxlength="3" [ngModel]="room.roomNumber" required/>
                 <label class="input-label">Room number</label>
             </div>
             <div *ngIf="roomNumber.invalid && roomNumber.touched" class="warning">

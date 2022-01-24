@@ -9,7 +9,7 @@ export class AvailableRoomsService {
   constructor() { }
 
   getList(cinemaData: CinemaData, reservationDate: Date, movieId: number) {
-    if(!cinemaData || !cinemaData.rooms || !movieId)
+    if(!cinemaData || !cinemaData.rooms || isNaN(movieId))
       return [];
     if(isNaN(reservationDate.getTime()) || movieId < 0)
       return [];
