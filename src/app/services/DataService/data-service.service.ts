@@ -48,7 +48,9 @@ export class DataService {
   }
 
   addScreening(screening: Screening): void {
-    this.httpSerivce.addScreening(screening).subscribe( resp => {
+    let obj: Screening = {} as Screening;
+    Object.assign(obj, screening, {movieId: screening.movieId, roomId: screening.roomId, date: screening.date, occupation: screening.occupation})
+    this.httpSerivce.addScreening(obj).subscribe( resp => {
       if(resp.status !== 201) return;
 
       this.serviceData.getValue().screenings.push(screening);

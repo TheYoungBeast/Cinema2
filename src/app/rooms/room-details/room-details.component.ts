@@ -27,9 +27,10 @@ export class RoomDetailsComponent implements OnInit, OnDestroy {
     })
 
     this.cinemaDataService.getData().subscribe( data => {
-      if(!data.rooms) return;
+      if(!data.rooms || !data.rooms[this.id]) return;
 
       this.room = data.rooms[this.id]
+      console.log(this.id, data.rooms, this.room);
 
       const maxRowNo = 7;
       let bestRowNo = 0;

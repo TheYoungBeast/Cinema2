@@ -9,6 +9,7 @@ export class AvailableRoomsService {
   constructor() { }
 
   getList(cinemaData: CinemaData, reservationDate: Date, movieId: number) {
+    movieId = parseInt(movieId as any);
     if(!cinemaData || !cinemaData.rooms || isNaN(movieId))
       return [];
     if(isNaN(reservationDate.getTime()) || movieId < 0)
