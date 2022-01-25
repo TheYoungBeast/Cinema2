@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CinemaData } from 'src/app/interface/cinema-data';
-import { Screening } from 'src/app/interface/screening';
+import CinemaData from 'src/app/data/cinemaData';
+import Screening from 'src/app/data/screening';
 import { AvailableRoomsService } from 'src/app/services/AvailableRooms/available-rooms.service';
 import { DataService } from 'src/app/services/DataService/data-service.service';
 
@@ -75,7 +75,7 @@ export class AddScreeningComponent implements OnInit, AfterViewInit {
       screening.date.setSeconds(0);
       screening.date.setMilliseconds(0);
       screening.occupation = [];
-      this.cinemaDataService.addScreening(screening);
+      this.cinemaDataService.addScreening(new Screening(parseInt(form.value.movieId), parseInt(form.value.roomId), screening.date, screening.occupation));
       this.route.navigate(['screenings']);
     }
   }

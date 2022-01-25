@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CinemaData } from 'src/app/interface/cinema-data';
+import CinemaData from 'src/app/data/cinemaData';
 import { DataService } from 'src/app/services/DataService/data-service.service';
 
 @Component({
@@ -18,6 +18,7 @@ export class CinemaScreeningsComponent implements OnInit {
   ngOnInit(): void {
     this.cinemaDataService.getData().subscribe( data => { 
       this.data = data;
+      console.log(data);
     });
   }
 }

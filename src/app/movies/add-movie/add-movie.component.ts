@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Movie } from 'src/app/interface/movie';
+import Movie from 'src/app/data/movie';
 import { DataService } from 'src/app/services/DataService/data-service.service';
 
 @Component({

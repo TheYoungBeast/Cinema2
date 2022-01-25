@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
-import { Room } from 'src/app/interface/room';
+import Room from 'src/app/data/room';
 
 import { DataService } from 'src/app/services/DataService/data-service.service';
 
@@ -27,7 +27,9 @@ export class RoomDetailsComponent implements OnInit, OnDestroy {
     })
 
     this.cinemaDataService.getData().subscribe( data => {
-      if(data.rooms) this.room = data.rooms[this.id]
+      if(!data.rooms) return;
+
+      this.room = data.rooms[this.id]
 
       const maxRowNo = 7;
       let bestRowNo = 0;

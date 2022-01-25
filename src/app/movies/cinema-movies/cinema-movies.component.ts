@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Movie } from 'src/app/interface/movie';
+import Movie from 'src/app/data/movie';
 import { DataService } from 'src/app/services/DataService/data-service.service';
 
 @Component({

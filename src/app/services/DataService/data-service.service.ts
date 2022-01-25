@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { CinemaData } from 'src/app/interface/cinema-data';
-import { Movie } from 'src/app/interface/movie';
-import { Room } from 'src/app/interface/room';
-import { Screening } from 'src/app/interface/screening';
 import { HttpService } from '../HttpService/http-service.service';
+
+import Movie from 'src/app/data/movie';
+import Room from 'src/app/data/room';
+import Screening from 'src/app/data/screening';
+import CinemaData from 'src/app/data/cinemaData';
 
 @Injectable({
   providedIn: 'root'

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CinemaData } from 'src/app/interface/cinema-data';
+import CinemaData from 'src/app/data/cinemaData';
+
 
 @Injectable({
   providedIn: 'root'

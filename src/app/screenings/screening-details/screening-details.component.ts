@@ -1,9 +1,9 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 
-import { Movie } from 'src/app/interface/movie';
-import { Room } from 'src/app/interface/room';
-import { Screening } from 'src/app/interface/screening';
+import Movie from 'src/app/data/movie';
+import Room from 'src/app/data/room';
+import Screening from 'src/app/data/screening';
 
 import { DataService } from 'src/app/services/DataService/data-service.service';
 

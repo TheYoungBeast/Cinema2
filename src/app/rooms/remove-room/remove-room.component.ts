@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Room } from 'src/app/interface/room';
-import { Screening } from 'src/app/interface/screening';
+import Room from 'src/app/data/room';
+import Screening from 'src/app/data/screening';
 
 import { DataService } from 'src/app/services/DataService/data-service.service';
 

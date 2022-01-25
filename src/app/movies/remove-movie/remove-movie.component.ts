@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Movie } from 'src/app/interface/movie';
-import { Screening } from 'src/app/interface/screening';
+import Movie from 'src/app/data/movie';
+import Screening from 'src/app/data/screening';
 
 import { DataService } from 'src/app/services/DataService/data-service.service';
 
@@ -33,7 +33,8 @@ export class RemoveMovieComponent implements OnInit, OnDestroy {
   }
 
   removeMovie() {
-    this.removeDenied = this.screenings.some(screening => screening.movieId === this.id);
+    this.removeDenied = this.screenings.some(screening => screening.movieId == this.id);
+
     if(!this.removeDenied) {
       this.cinemaDataService.deleteMovie(this.id);
       this.router.navigate(['movies']);

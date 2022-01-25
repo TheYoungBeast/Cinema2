@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParamsOptions, HttpResponse } from '@angular/common/http';
 import { catchError, Observable, of, retry, throwError } from 'rxjs';
-import { CinemaData } from 'src/app/interface/cinema-data';
-import { Movie } from 'src/app/interface/movie';
-import { Room } from 'src/app/interface/room';
-import { Screening } from 'src/app/interface/screening';
+import CinemaData from 'src/app/data/cinemaData';
+import Movie from 'src/app/data/movie';
+import Room from 'src/app/data/room';
+import Screening from 'src/app/data/screening';
+
 
 @Injectable({
   providedIn: 'root'

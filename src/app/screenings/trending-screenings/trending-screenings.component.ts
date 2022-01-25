@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { LegendPosition } from '@swimlane/ngx-charts';
-import { CinemaData } from 'src/app/interface/cinema-data';
+import CinemaData from 'src/app/data/cinemaData';
 import { DataService } from 'src/app/services/DataService/data-service.service';
 import { MovieRankingService } from 'src/app/services/MovieRanking/movie-ranking.service';
 

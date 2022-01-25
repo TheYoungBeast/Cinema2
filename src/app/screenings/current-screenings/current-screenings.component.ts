@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CinemaData } from 'src/app/interface/cinema-data';
-import { Screening } from 'src/app/interface/screening';
+import CinemaData from 'src/app/data/cinemaData';
+import Screening from 'src/app/data/screening';
 import { DataService } from 'src/app/services/DataService/data-service.service';
 
 @Component({
